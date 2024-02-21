@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 0</title>
+</head>
+
+<body>
+	<h1>Задача 0</h1>
+
+	<p>Обчислити значення виразів:
+		<ol>
+			<li>S1 = a+12+b</li>
+			<li>S2 = sqrt((a+b)/2a)</li>
+			<li>S3 = cbrt((a+b)*c)</li>
+			<li>S4 = sin(a/(-b))</li>
+		</ol>
+	</p>
+
+	<script>
+		let a = parseFloat(prompt('Введіть значення a', '0'));
+		let b = parseFloat(prompt('Введіть значення b', '0'));
+		let c = parseFloat(prompt('Введіть значення c', '0'));
+
+		let s1 = a + 12 + b;
+		let s2 = Math.sqrt((a + b) / 2 * a);
+		let s3 = Math.cbrt((a + b) * c);
+		let s4 = Math.sin(a / (-b));
+
+		document.write(` <p>при a = ${a}, b = ${b}, c = ${c}</p>
+			<p>Відповідь: <br> S1 = ${s1} <br> S2 = ${s2} <br> S3 = ${s3} <br> S4 = ${s4}</p>
+		`);
+	</script>
+
+</body>
+
+</html>

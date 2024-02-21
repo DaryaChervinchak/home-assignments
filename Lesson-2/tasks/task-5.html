@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 5</title>
+</head>
+
+<body>
+	<h1>Задача 5</h1>
+
+	<p> Дано кількість секунд, що пройшла від початку доби. Визначити скільки це годин і хвилин.</p>
+
+	<script>
+		let secondsNumber = parseInt(prompt('Введіть кількість секунд', '0'));
+
+		const SECONDS_IN_MINUTE = 60;
+		const MINUTES_IN_HOUR = 60;
+
+		let minutesNumber = secondsNumber / SECONDS_IN_MINUTE;
+		let hoursNumber = minutesNumber / MINUTES_IN_HOUR;
+
+		document.write(`
+		 Відповідь: ${minutesNumber} хв, ${hoursNumber} год
+		`);
+	</script>
+
+</body>
+
+</html>

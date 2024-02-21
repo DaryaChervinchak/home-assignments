@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 6</title>
+	<style>
+		.check {
+			box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+			max-width: 300px;
+			margin: 0 auto;
+			padding: 25px;
+			color: rgb(57, 55, 55);
+		}
+
+		.check__title {
+			text-align: center;
+		}
+
+		.check__items {
+			padding-bottom: 20px;
+			border-bottom: 1px dashed rgb(57, 55, 55);
+		}
+
+		.check__item:not(:last-child) {
+			margin-bottom: 15px;
+		}
+
+		.item-check__line {
+			display: flex;
+			gap: 15px;
+			justify-content: space-between;
+		}
+
+		.check__footer {
+			padding-top: 20px;
+		}
+
+		p {
+			margin-bottom: 35px;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Задача 6</h1>
+
+	<p>З клавіатури вводяться вартість товару та кількість одиниць 3 товарів. Обчислити вартість кожного товару
+		окремо та загальну вартість. Вивести чек (як у супермаркеті) використовуючи елементи розмітки.</p>
+
+	<script>
+		let firstProductCost = parseFloat(prompt('Введіть вартість першого товару', '0'));
+		let firstProductQuantity = parseInt(prompt('Введіть кількість першого товару', '0'));
+		let secondProductCost = parseFloat(prompt('Введіть вартість другого товару', '0'));
+		let secondProductQuantity = parseInt(prompt('Введіть кількість другого товару', '0'));
+		let thirdProductCost = parseFloat(prompt('Введіть вартість третього товару', '0'));
+		let thirdProductQuantity = parseInt(prompt('Введіть кількість третього товару', '0'));
+
+		let firstProductPrice = firstProductCost / firstProductQuantity;
+		let secondProductPrice = secondProductCost / secondProductQuantity;
+		let thirdProductPrice = thirdProductCost / thirdProductQuantity;
+
+		let totalCost = firstProductCost + secondProductCost + thirdProductCost;
+
+		document.write(`
+		<div class="check">
+		<h3 class="check__title">Чек</h3>
+		<div class="check__items">
+			<div class="check__item item-check">
+				<div class="item-check__line">
+					<div class="item-check__quantity">${firstProductQuantity} <span>x</span></div>
+					<div class="item-check__price">${firstProductPrice.toFixed(2)}</div>
+				</div>
+				<div class="item-check__line">
+					<div class="item-check__title">Перший товар</div>
+					<div class="item-check__cost">${firstProductCost.toFixed(2)}</div>
+				</div>
+			</div>
+			<div class="check__item item-check">
+				<div class="item-check__line">
+					<div class="item-check__quantity">${secondProductQuantity} <span>x</span></div>
+					<div class="item-check__price">${secondProductPrice.toFixed(2)}</div>
+				</div>
+				<div class="item-check__line">
+					<div class="item-check__title">Другий товар</div>
+					<div class="item-check__cost">${secondProductCost.toFixed(2)}</div>
+				</div>
+			</div>
+			<div class="check__item item-check">
+				<div class="item-check__line">
+					<div class="item-check__quantity">${thirdProductQuantity} <span>x</span></div>
+					<div class="item-check__price">${thirdProductPrice.toFixed(2)}</div>
+				</div>
+				<div class="item-check__line">
+					<div class="item-check__title">Третій товар</div>
+					<div class="item-check__cost">${thirdProductCost.toFixed(2)}</div>
+				</div>
+			</div>
+		</div>
+		<div class="check__footer">
+			<div class="check__item item-check">
+				<div class="item-check__line">
+					<div class="item-check__title">Сумма</div>
+					<div class="item-check__cost"><strong>${totalCost.toFixed(2)}</strong></div>
+				</div>
+			</div>
+		</div>
+	</div>
+		`);
+	</script>
+</body>
+
+</html>
