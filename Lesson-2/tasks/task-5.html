@@ -16,9 +16,10 @@
 		let secondsNumber = parseInt(prompt('Введіть кількість секунд', '0'));
 
 		const SECONDS_IN_HOUR = 3600;
+		const SECONDS_IN_MINUTE = 60;
 
 		let hoursNumber = Math.floor(secondsNumber / SECONDS_IN_HOUR);
-		let minutesNumber = Math.floor((secondsNumber - (hoursNumber * SECONDS_IN_HOUR)) / 60);
+		let minutesNumber = Math.floor((secondsNumber - (hoursNumber * SECONDS_IN_HOUR)) / SECONDS_IN_MINUTE);
 
 		document.write(`
 		 Відповідь: ${Math.floor(hoursNumber)} год ${minutesNumber} хв
