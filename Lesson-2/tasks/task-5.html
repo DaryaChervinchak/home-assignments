@@ -15,14 +15,13 @@
 	<script>
 		let secondsNumber = parseInt(prompt('Введіть кількість секунд', '0'));
 
-		const SECONDS_IN_MINUTE = 60;
-		const MINUTES_IN_HOUR = 60;
+		const SECONDS_IN_HOUR = 3600;
 
-		let minutesNumber = secondsNumber / SECONDS_IN_MINUTE;
-		let hoursNumber = minutesNumber / MINUTES_IN_HOUR;
+		let hoursNumber = Math.floor(secondsNumber / SECONDS_IN_HOUR);
+		let minutesNumber = Math.floor((secondsNumber - (hoursNumber * SECONDS_IN_HOUR)) / 60);
 
 		document.write(`
-		 Відповідь: ${minutesNumber} хв, ${hoursNumber} год
+		 Відповідь: ${Math.floor(hoursNumber)} год ${minutesNumber} хв
 		`);
 	</script>
 
