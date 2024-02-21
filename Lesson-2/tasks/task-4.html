@@ -15,14 +15,14 @@
 	<script>
 		let lengthInCentimeters = parseFloat(prompt('Введіть довжину у сантиметрах', '0'));
 
+		const CENTIMETERS_IN_KILOMETER = 100000;
 		const CENTIMETERS_IN_METER = 100;
-		const METERS_IN_KILOMETER = 1000;
 
-		let lengthInMeters = lengthInCentimeters / CENTIMETERS_IN_METER;
-		let lengthInKilometers = lengthInMeters / METERS_IN_KILOMETER;
+		let lengthInKilometers = Math.floor(lengthInCentimeters / CENTIMETERS_IN_KILOMETER);
+		let lengthInMeters = (lengthInCentimeters - (lengthInKilometers * CENTIMETERS_IN_KILOMETER)) / CENTIMETERS_IN_METER;
 
 		document.write(`
-		 Відповідь: ${lengthInMeters} м або ${lengthInKilometers} км
+		 Відповідь: ${lengthInKilometers} км ${lengthInMeters} м
 		`);
 	</script>
 
