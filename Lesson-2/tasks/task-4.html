@@ -13,17 +13,18 @@
 	<p>Дано довжину у сантиметрах. Визначати скільки це метрів і кілометрів.</p>
 
 	<script>
-		let lengthInCentimeters = parseFloat(prompt('Введіть довжину у сантиметрах', '0'));
+		let lengthInputInCentimeters = parseFloat(prompt('Введіть довжину у сантиметрах', '0'));
 
 		const CENTIMETERS_IN_KILOMETER = 100000;
 		const CENTIMETERS_IN_METER = 100;
 
-		let lengthInKilometers = Math.floor(lengthInCentimeters / CENTIMETERS_IN_KILOMETER);
-		let lengthInMeters = Math.floor((lengthInCentimeters - (lengthInKilometers * CENTIMETERS_IN_KILOMETER)) /
+		let lengthInKilometers = Math.floor(lengthInputInCentimeters / CENTIMETERS_IN_KILOMETER);
+		let lengthInMeters = Math.floor((lengthInputInCentimeters - (lengthInKilometers * CENTIMETERS_IN_KILOMETER)) /
 			CENTIMETERS_IN_METER);
+		let lengthInCentimeters = lengthInputInCentimeters % 100;
 
 		document.write(`
-		 Відповідь: ${lengthInKilometers} км ${lengthInMeters} м
+		 Відповідь: ${lengthInKilometers} км ${lengthInMeters} м ${lengthInCentimeters} см
 		`);
 	</script>
 
