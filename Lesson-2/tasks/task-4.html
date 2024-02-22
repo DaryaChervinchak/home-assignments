@@ -19,9 +19,8 @@
 		const CENTIMETERS_IN_METER = 100;
 
 		let lengthInKilometers = Math.floor(lengthInputInCentimeters / CENTIMETERS_IN_KILOMETER);
-		let lengthInMeters = Math.floor((lengthInputInCentimeters - (lengthInKilometers * CENTIMETERS_IN_KILOMETER)) /
-			CENTIMETERS_IN_METER);
-		let lengthInCentimeters = lengthInputInCentimeters % 100;
+		let lengthInMeters = Math.floor((lengthInputInCentimeters % CENTIMETERS_IN_KILOMETER) / CENTIMETERS_IN_METER);
+		let lengthInCentimeters = lengthInputInCentimeters % CENTIMETERS_IN_METER;
 
 		document.write(`
 		 Відповідь: ${lengthInKilometers} км ${lengthInMeters} м ${lengthInCentimeters} см
