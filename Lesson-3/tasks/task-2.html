@@ -16,13 +16,14 @@
 	<script>
 		const productPrice = parseFloat(prompt("Введіть ціну товару", "0"));
 		const moneyQuantity = parseFloat(prompt("Введіть кількість грошей", "0"));
+		const LOTTERY_PRICE = 4;
 
 		let result;
 
 		if (productPrice > moneyQuantity) result = "Недостатньо коштів";
 		else {
 			result = "Покупка здійснена";
-			if (moneyQuantity - productPrice >= 4) result += "<br> Не бажаєте купити лотерею за 4 грн?"
+			if (moneyQuantity - productPrice >= LOTTERY_PRICE) result += "<br> Не бажаєте купити лотерею за 4 грн?"
 		}
 
 		document.write(result);
