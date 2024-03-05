@@ -13,15 +13,15 @@
 		користувач намагається потопити корабель.</p>
 
 	<script>
-		const rowsNumbers = parseInt(prompt("Введіть кількість рядків", "0"));
-		const columnsNumbers = parseInt(prompt("Введіть кількість стовпців", "0"));
-		alert(`Поле розміром ${rowsNumbers} * ${columnsNumbers}`);
-		const projectilesNumbers = parseInt(prompt("Введіть кількість снарядів", "0"));
+		const rowsNumber = parseInt(prompt("Введіть кількість рядків", "0"));
+		const columnsNumber = parseInt(prompt("Введіть кількість стовпців", "0"));
+		alert(`Поле розміром ${rowsNumber} * ${columnsNumber}`);
+		const projectilesNumber = parseInt(prompt("Введіть кількість снарядів", "0"));
 		let win = false;
 
 		const minShipPositionNumber = Math.ceil(1);
-		const maxShipPositionRowsNumber = Math.floor(rowsNumbers);
-		const maxShipPositionColumnsNumber = Math.floor(columnsNumbers);
+		const maxShipPositionRowsNumber = Math.floor(rowsNumber);
+		const maxShipPositionColumnsNumber = Math.floor(columnsNumber);
 
 		const randomShipPositionRowNumber = Math.floor(Math.random() * (maxShipPositionRowsNumber - minShipPositionNumber +
 			1) + minShipPositionNumber);
@@ -31,7 +31,7 @@
 			1) + minShipPositionNumber);
 
 
-		for (let i = 0; i < projectilesNumbers; i++) {
+		for (let i = 0; i < projectilesNumber; i++) {
 			const userShipPositionRowNumber = parseInt(prompt(
 				`Введіть номер рядку на якому знаходиться корабель (від ${minShipPositionNumber} до ${maxShipPositionRowsNumber})`,
 				"0"));

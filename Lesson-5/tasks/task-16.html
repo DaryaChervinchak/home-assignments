@@ -13,11 +13,11 @@
 		та вивести величину прибутку протягом кожного окремого тижня.</p>
 
 	<script>
-		const weeksNumbers = parseInt(prompt("Введіть кількість тижнів", "0"));
+		const weeksNumber = parseInt(prompt("Введіть кількість тижнів", "0"));
 		const DAYS_IN_WEEK = 7;
 		let allIncome = 0;
 
-		for (let week = 1; week <= weeksNumbers; week++) {
+		for (let week = 1; week <= weeksNumber; week++) {
 			let incomePerWeek = 0;
 			for (let day = 1; day <= DAYS_IN_WEEK; day++) {
 				const incomePerDay = parseFloat(prompt(`Введіть прибуток за ${day} день ${week} тижня`, "0"));
