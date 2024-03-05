@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача -2</title>
+</head>
+
+<body>
+	<h1>Задача -2</h1>
+
+	<p>Поступово генерувати 100 випадкових чисел від 1 до 1000. Підрахувати яких чисел більше: парних чи непарних.</p>
+
+	<script>
+		const minNumber = Math.ceil(1);
+		const maxNumber = Math.floor(1000);
+		let pairedNumbersCount = 0;
+		let unpairedNumbersCount = 0;
+		let result;
+
+		for (let i = 0; i < 100; i++) {
+			const randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
+			document.write(`${randomNumber} `);
+
+			if (randomNumber % 2 === 0)
+				pairedNumbersCount++;
+			else
+				unpairedNumbersCount++;
+		}
+
+		if (pairedNumbersCount > unpairedNumbersCount) result = "<p>Більше парних</p>";
+		else if (unpairedNumbersCount > pairedNumbersCount) result = "<p>Більше непарних</p>";
+		else result = "<p>Кількість однакова</p>";
+		document.write(result);
+	</script>
+
+</body>
+
+</html>

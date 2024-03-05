@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 9</title>
+</head>
+
+<body>
+	<h1>Задача 9</h1>
+
+	<p>Користувач загадує число (від 1 до 100). Комп’ютер задає питання поки не вгадає число користувача (використати
+		confirm).</p>
+
+	<script>
+		const isMakeNumber = confirm("Загадайте число від 1 до 100");
+
+		if (isMakeNumber) {
+			const minNumber = Math.ceil(1);
+			const maxNumber = Math.floor(100);
+			let randomNumber;
+
+			do {
+				randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
+			} while (!confirm(`Це число ${randomNumber}`));
+
+			document.write("Число вгадане");
+
+		} else document.write("Ви не загадали число");
+	</script>
+
+</body>
+
+</html>

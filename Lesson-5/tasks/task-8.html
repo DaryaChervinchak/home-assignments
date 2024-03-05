@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 8 </title>
+</head>
+
+<body>
+	<h1>Задача 8</h1>
+
+	<p>Користувач загадує число (від 1 до 100). За 3 спроби комп’ютер намагається вгадати число користувача (використати
+		confirm).</p>
+
+	<script>
+		const isMakeNumber = confirm("Загадайте число від 1 до 100");
+
+		if (isMakeNumber) {
+			const minNumber = Math.ceil(1);
+			const maxNumber = Math.floor(100);
+			let result;
+
+			for (let i = 0; i < 3; i++) {
+				const randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
+
+				if (confirm(`Це число ${randomNumber}`)) {
+					result = "Число вгадане"
+					break;
+				} else result = "Число не вгадане"
+			}
+			document.write(result);
+
+		} else document.write("Ви не загадали число");
+	</script>
+
+</body>
+
+</html>

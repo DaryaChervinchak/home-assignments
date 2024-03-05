@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 14</title>
+</head>
+
+<body>
+	<h1>Задача 14</h1>
+	<p>Каса. Користувачу повідомляють суму, яку йому треба сплатити. Користувач поступово вводить суму грошей до
+		тих пір, поки суми не буде достатньо для оплати товарів (кожного разу користувачу повідомляють, яку ще суму
+		потрібно ввести).</p>
+
+	<script>
+		const minAmount = Math.ceil(100);
+		const maxAmount = Math.floor(1000);
+		const randomAmount = Math.floor(Math.random() * (maxAmount - minAmount + 1) + minAmount);
+
+		let userAmount = parseFloat(prompt(`Вам потрібо сплатити ${randomAmount} грн., введіть сумму для оплати`, "0"));
+
+		while (randomAmount > userAmount) {
+			userAmount += parseFloat(prompt(`Вам потрібо сплатити ${randomAmount - userAmount} грн., введіть сумму для оплати`,
+				"0"));
+		}
+
+		userAmount > randomAmount ? alert(`Ви сплатили всю сумму, ваша решта ${userAmount - randomAmount} грн.`) : alert(
+			"Ви сплатили всю сумму");
+	</script>
+
+</body>
+
+</html>

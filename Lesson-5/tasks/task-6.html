@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		div {
+			display: flex;
+			gap: 30px;
+		}
+	</style>
+	<title>Задача 6</title>
+</head>
+
+<body>
+	<h1>Задача 6</h1>
+
+	<p>Вивести 3 таблиці (по 3 рядки і 3 стовпці у кожній) за зразком.</p>
+
+	<script>
+		let count = 0;
+		document.write('<div>')
+
+		for (let table = 0; table < 3; table++) {
+			document.write('<table border="2px">');
+
+			for (let row = 0; row < 3; row++) {
+				document.write('<tr>');
+				for (let column = 0; column < 3; column++) {
+					count++;
+					document.write(`<td>${count}</td>`);
+				}
+				document.write('</tr>');
+			}
+
+			document.write('</table>');
+		}
+		document.write('</div>');
+	</script>
+
+</body>
+
+</html>
