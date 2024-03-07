@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 1</title>
+</head>
+
+<body>
+	<h1>Задача 1</h1>
+
+	<p>Розпочавши тренування, спортсмен першого дня пробіг 10 км. Щодня він збільшував денну норму на 10% від норми
+		попереднього дня. Який сумарний шлях пробіжить спортсмен за 7 днів? Якого дня вперше спортсмен пробіжить понад 20
+		км? Якого дня вперше сумарний шлях перевищить 60 км?
+	</p>
+
+	<script>
+		const DISTANCE_IN_FIRST_DAY = 10;
+		const DAY_IN_WEEK = 7;
+		const PERCENT_INCREASE_DISTANCE = 10;
+		const DISTANCE_NUMBER_EXCEEDS_TOTAL_PATH = 60;
+		const DISTANCE_NUMBER_EXCEEDS_DAILY_NORM = 20;
+
+		let dailyNormNumber = DISTANCE_IN_FIRST_DAY;
+		let totalDistance = DISTANCE_IN_FIRST_DAY;
+		let dayNumberTotalPath;
+
+		let day = 2;
+
+		for (; day <= DAY_IN_WEEK; day++) {
+			dailyNormNumber += dailyNormNumber / PERCENT_INCREASE_DISTANCE;
+			totalDistance += dailyNormNumber;
+
+			if (totalDistance > DISTANCE_NUMBER_EXCEEDS_TOTAL_PATH && !dayNumberTotalPath) {
+				dayNumberTotalPath = day;
+			}
+		}
+
+		day--;
+
+		while (dailyNormNumber < DISTANCE_NUMBER_EXCEEDS_DAILY_NORM) {
+			dailyNormNumber += dailyNormNumber / PERCENT_INCREASE_DISTANCE;
+			day++;
+		}
+
+		document.write(`<p>Сумарний шлях становить: ${totalDistance.toFixed(2)} км</p>`);
+		document.write(`<p>На ${day}-му дні вперше спортсмен пробіжить понад 20 км</p>`);
+		document.write(`<p>На ${dayNumberTotalPath}-му дні сумарний шлях вперше перевищить 60 км</p>`);
+	</script>
+
+</body>
+
+</html>
