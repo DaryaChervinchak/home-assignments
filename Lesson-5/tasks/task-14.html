@@ -17,16 +17,16 @@
 		const minAmount = Math.ceil(100);
 		const maxAmount = Math.floor(1000);
 		const randomAmount = Math.floor(Math.random() * (maxAmount - minAmount + 1) + minAmount);
+		let userAmount = 0;
 
-		let userAmount = parseFloat(prompt(`Вам потрібо сплатити ${randomAmount} грн., введіть сумму для оплати`, "0"));
 
-		while (randomAmount > userAmount) {
-			userAmount += parseFloat(prompt(`Вам потрібо сплатити ${randomAmount - userAmount} грн., введіть сумму для оплати`,
-				"0"));
-		}
+		do {
+			userAmount += parseFloat(prompt(
+				`Вам потрібо сплатити ${randomAmount - userAmount} грн., введіть сумму для оплати`, "0"));
+		} while (randomAmount > userAmount);
 
 		userAmount > randomAmount ? alert(`Ви сплатили всю сумму, ваша решта ${userAmount - randomAmount} грн.`) : alert(
-			"Ви сплатили всю сумму");
+			"Ви сплатили всю сумму")
 	</script>
 
 </body>
