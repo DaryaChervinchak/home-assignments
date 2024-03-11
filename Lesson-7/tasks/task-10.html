@@ -14,6 +14,7 @@
 	<p>Дано покази температур (довільна кількість). Розробити функцію, яка дозволить знайти середнє значення для додатних
 		показів температури.</p>
 
+
 	<script>
 		function getAverageOfPositiveTemperature(firstDayTemperature, secondDayTemperature, thirdDayTemperature) {
 			let countOfPositiveTemperature = 0;
@@ -40,7 +41,7 @@
 		const averageOfPositiveTemperature = getAverageOfPositiveTemperature(firstDayTemperature, secondDayTemperature,
 			thirdDayTemperature);
 
-		document.write(`Середнє значення для додатних показів температури: ${averageOfPositiveTemperature}`);
+		document.write(`Середнє значення для додатних показів температури: ${averageOfPositiveTemperature.toFixed(2)}`);
 	</script>
 
 </body>
