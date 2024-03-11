@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		.image {
+			width: 150px;
+			height: 150px;
+			position: relative;
+		}
+
+		.image img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+		}
+	</style>
+	<title>Задача 7</title>
+</head>
+
+<body>
+	<h1>Задача 7</h1>
+
+	<p> Створити функцію, яка випадковим чином виводить на екран одне із 4 зображень (шляхи до зображень передаються у
+		функцію).</p>
+
+	<script>
+		function getRandomNumber(from, to) {
+			const minNumber = Math.ceil(from);
+			const maxNumber = Math.floor(to);
+			const randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
+
+			return randomNumber;
+		}
+
+		function showImage(firstImagePath, secondImagePath, thirdImagePath, fourthImagePath) {
+			let urlImage;
+			const randomNumberImage = getRandomNumber(1, arguments.length);
+
+			switch (randomNumberImage) {
+				case 1:
+					urlImage = firstImagePath;
+					break;
+				case 2:
+					urlImage = secondImagePath;
+					break;
+				case 3:
+					urlImage = thirdImagePath;
+					break;
+				case 4:
+					urlImage = fourthImagePath;
+					break;
+			}
+
+			document.write(`<div class="image"><img src="${urlImage}" /></div>`);
+		}
+
+		const firstImagePath = "https://i.pinimg.com/564x/b5/82/7b/b5827bc0cd5faf05c639523553e287c5.jpg";
+		const secondImagePath = "https://i.pinimg.com/564x/5c/c6/40/5cc64069b4ea4addd5c8944f3447a902.jpg";
+		const thirdImagePath = "https://i.pinimg.com/564x/03/fd/f1/03fdf1eb3ac2d72b7af4facf2a2e7b28.jpg";
+		const fourthImagePath = "https://i.pinimg.com/736x/c2/62/e4/c262e4441624a0ff80dc10b0a32e6434.jpg";
+
+		showImage(firstImagePath, secondImagePath, thirdImagePath, fourthImagePath);
+	</script>
+
+</body>
+
+</html>

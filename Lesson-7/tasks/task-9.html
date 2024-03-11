@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 9</title>
+</head>
+
+<body>
+	<h1>Задача 9</h1>
+
+	<p> Дано покази температур (довільна кількість). Розробити функцію, яка дозволить підрахувати кількість від’ємних
+		показів температури.</p>
+
+	<script>
+		function getCountOfNegativeTemperature(firstDayTemperature, secondDayTemperature, thirdDayTemperature) {
+			let countOfNegativeTemperature = 0;
+
+			for (let i = 0; i < arguments.length; i++) {
+				if (arguments[i] < 0) countOfNegativeTemperature++;
+			}
+			return countOfNegativeTemperature;
+		}
+
+		const firstDayTemperature = parseFloat(prompt("Введіть температуру за перший день", "0"));
+		const secondDayTemperature = parseFloat(prompt("Введіть температуру за другий день", "0"));
+		const thirdDayTemperature = parseFloat(prompt("Введіть температуру за третій день", "0"));
+
+		const countOfNegativeTemperature = getCountOfNegativeTemperature(firstDayTemperature, secondDayTemperature,
+			thirdDayTemperature);
+
+		document.write(`Кількість від’ємних показів температури: ${countOfNegativeTemperature}`);
+	</script>
+
+</body>
+
+</html>

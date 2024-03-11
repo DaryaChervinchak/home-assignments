@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 5</title>
+</head>
+
+<body>
+	<h1>Задача 5</h1>
+
+	<p>Створити окремі функції, які переводять:
+		<ol>
+			<li>Сантиметри у дюйми;</li>
+			<li>Кілограми у фунти;</li>
+			<li>Кілометри у милі.</li>
+		</ol>
+	</p>
+
+	<script>
+		function getCentimetersToInches(centimeters) {
+			const CENTIMETERS_IN_INCHES = 0.393701;
+			return centimeters * CENTIMETERS_IN_INCHES;
+		}
+
+		function getKilogramsToPounds(kilograms) {
+			const KILOGRAMS_IN_POUNDS = 2.20462;
+			return kilograms * KILOGRAMS_IN_POUNDS;
+		}
+
+		function getKilometersToMiles(kilometers) {
+			const KILOMETERS_IN_MILES = 0.621371;
+			return kilometers * KILOMETERS_IN_MILES;
+		}
+
+		const centimeters = parseInt(prompt("Введіть сантиметри", "0"));
+		const kilograms = parseInt(prompt("Введіть кілограми", "0"));
+		const kilometers = parseInt(prompt("Введіть кілометри", "0"));
+
+		const centimetersToInches = getCentimetersToInches(centimeters);
+		const kilogramsToPounds = getKilogramsToPounds(kilograms);
+		const kilometersToMiles = getKilometersToMiles(kilometers);
+
+		document.write(`${centimeters} см це ${centimetersToInches.toFixed(2)} дюйма <br>`);
+		document.write(`${kilograms} кг це ${kilogramsToPounds.toFixed(2)} фунта <br>`);
+		document.write(`${kilometers} км це ${kilometersToMiles.toFixed(2)} миль`);
+	</script>
+
+</body>
+
+</html>

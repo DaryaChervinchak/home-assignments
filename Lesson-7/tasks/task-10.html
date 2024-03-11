@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 10</title>
+</head>
+
+<body>
+	<h1>Задача 10</h1>
+
+	<p>Дано покази температур (довільна кількість). Розробити функцію, яка дозволить знайти середнє значення для додатних
+		показів температури.</p>
+
+	<script>
+		function getAverageOfPositiveTemperature(firstDayTemperature, secondDayTemperature, thirdDayTemperature) {
+			let countOfPositiveTemperature = 0;
+			let sumOfPositiveTemperature = 0;
+			let averageOfPositiveTemperature = 0;
+
+			for (let i = 0; i < arguments.length; i++) {
+				if (arguments[i] > 0) {
+					countOfPositiveTemperature++;
+					sumOfPositiveTemperature += arguments[i];
+				}
+			}
+
+			if (countOfPositiveTemperature > 0) averageOfPositiveTemperature = sumOfPositiveTemperature /
+				countOfPositiveTemperature;
+
+			return averageOfPositiveTemperature;
+		}
+
+		const firstDayTemperature = parseFloat(prompt("Введіть температуру за перший день", "0"));
+		const secondDayTemperature = parseFloat(prompt("Введіть температуру за другий день", "0"));
+		const thirdDayTemperature = parseFloat(prompt("Введіть температуру за третій день", "0"));
+
+		const averageOfPositiveTemperature = getAverageOfPositiveTemperature(firstDayTemperature, secondDayTemperature,
+			thirdDayTemperature);
+
+		document.write(`Середнє значення для додатних показів температури: ${averageOfPositiveTemperature}`);
+	</script>
+
+</body>
+
+</html>

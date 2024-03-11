@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 4</title>
+</head>
+
+<body>
+	<h1>Задача 4</h1>
+
+	<p>Створити функцію, яка для 3 заданих чисел знаходить одночасно декілька результатів: кількість парних, кількість
+		додатних, кількість більших за 100.</p>
+
+	<script>
+		function getCountOfPairedNumbers(firstNumber, secondNumber, thirdNumber) {
+			let countOfPairedNumbers = 0;
+
+			for (let i = 0; i < arguments.length; i++) {
+				if (arguments[i] % 2 === 0) countOfPairedNumbers++;
+			}
+
+			return countOfPairedNumbers;
+		}
+
+		function getCountOfPositiveNumbers(firstNumber, secondNumber, thirdNumber) {
+			let countOfPositiveNumbers = 0;
+
+			for (let i = 0; i < arguments.length; i++) {
+				if (arguments[i] > 0) countOfPositiveNumbers++;
+			}
+
+			return countOfPositiveNumbers;
+		}
+
+		function getCountOfNumbersMoreThan100(firstNumber, secondNumber, thirdNumber) {
+			let countOfNumbersMoreThan100 = 0;
+
+			for (let i = 0; i < arguments.length; i++) {
+				if (arguments[i] > 100) countOfNumbersMoreThan100++;
+			}
+
+			return countOfNumbersMoreThan100;
+		}
+
+
+		function showCounts(numberOfPaired, countOfPositiveNumbers, countOfNumbersMoreThan100) {
+			document.write(`Кількість парних: ${numberOfPaired} <br>`);
+			document.write(`Кількість додатних: ${countOfPositiveNumbers} <br>`);
+			document.write(`Кількість більших за 100: ${countOfNumbersMoreThan100}`);
+		}
+
+		const firstNumber = parseFloat(prompt("Введіть перше число", "0"));
+		const secondNumber = parseFloat(prompt("Введіть друге число", "0"));
+		const thirdNumber = parseFloat(prompt("Введіть третє число", "0"));
+
+		const countOfPairedNumbers = getCountOfPairedNumbers(firstNumber, secondNumber, thirdNumber);
+		const countOfPositiveNumbers = getCountOfPositiveNumbers(firstNumber, secondNumber, thirdNumber);
+		const countOfNumbersMoreThan100 = getCountOfNumbersMoreThan100(firstNumber, secondNumber, thirdNumber);
+
+
+		showCounts(countOfPairedNumbers, countOfPositiveNumbers, countOfNumbersMoreThan100);
+	</script>
+
+</body>
+
+</html>

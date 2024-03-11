@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 6</title>
+</head>
+
+<body>
+	<h1>Задача 6</h1>
+
+	<p>Створити функцію, яка створює таблицю з вказаною кількістю рядків і стовпців (таблиця заповнюється заданим
+		фіксованим повідомленням).</p>
+
+	<script>
+		function showTable(rowsNumber, columnNumber, userMessage) {
+			document.write('<table border="2px">');
+
+			for (let row = 0; row < rowsNumber; row++) {
+				document.write('<tr>');
+				for (let column = 0; column < columnNumber; column++) {
+					document.write(`<td>${userMessage}</td>`);
+				}
+				document.write('</tr>');
+			}
+
+			document.write('</table>')
+		}
+
+		const rowsNumber = parseInt(prompt("Введіть кількість рядків", "1"));
+		const columnNumber = parseInt(prompt("Введіть кількість стовпців", "1"));
+		const userMessage = prompt("Введіть повідомлення");
+
+		showTable(rowsNumber, columnNumber, userMessage);
+	</script>
+
+</body>
+
+</html>
