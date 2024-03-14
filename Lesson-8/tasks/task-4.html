@@ -19,13 +19,13 @@
 	</p>
 
 	<script>
-		const carNumbers = ['BX 6036 BH', 'AC 1533 BE', 'BB 4177 CH', 'AA 6126 MA', 'AE 8181 EX'];
+		const carNumbers = ['BX 6036 BH', 'AC 1533 BE', 'BB 4177 CH', 'AA 6126 MA', 'AE'];
 
 		function getNumberOfNumbersStartWithLetter(carNumbers, letter) {
 			let numberOfNumbersStartWithLetter = 0;
 
-			for (let number = 0; number < carNumbers.length; number++) {
-				if (carNumbers[number].charAt(0) === letter) numberOfNumbersStartWithLetter++;
+			for (let i = 0; i < carNumbers.length; i++) {
+				if (carNumbers[i].charAt(0) === letter) numberOfNumbersStartWithLetter++;
 			}
 			return numberOfNumbersStartWithLetter;
 		}
@@ -33,8 +33,8 @@
 		function getNumberOfNumbersWhereFistAndLastLetterEqual(carNumbers) {
 			let numberOfNumbersWhereFistAndLastLetterEqual = 0;
 
-			for (let number = 0; number < carNumbers.length; number++) {
-				if (carNumbers[number].charAt(0) === carNumbers[number].charAt(carNumbers[number].length - 1))
+			for (let i = 0; i < carNumbers.length; i++) {
+				if (carNumbers[i].charAt(0) === carNumbers[i].charAt(carNumbers[i].length - 1))
 					numberOfNumbersWhereFistAndLastLetterEqual++;
 			}
 			return numberOfNumbersWhereFistAndLastLetterEqual;
@@ -43,8 +43,8 @@
 		function getNumberOfNumbersWhereLengthLargerNumeric(carNumbers, numeric) {
 			let numberOfNumbersWhereLengthLargerNumeric = 0;
 
-			for (let number = 0; number < carNumbers.length; number++) {
-				if (carNumbers[number].length > numeric) numberOfNumbersWhereLengthLargerNumeric++;
+			for (let i = 0; i < carNumbers.length; i++) {
+				if (carNumbers[i].length > numeric) numberOfNumbersWhereLengthLargerNumeric++;
 			}
 			return numberOfNumbersWhereLengthLargerNumeric;
 		}
