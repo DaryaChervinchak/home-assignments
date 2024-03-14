@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 1</title>
+</head>
+
+<body>
+	<h1>Задача 1</h1>
+
+	<p>Дано масив, який містить оцінки з К предметів. Знайти середній бал і з’ясувати до якої категорії він відноситься
+		(відмінник, двійочник (має хоча би одну двійку), хорошист (оцінки добре і відмінно), трійочник(є хоча би одна
+		трійка)).</p>
+
+	<script>
+		const grades = [5, 5, 2, 3, 4, 4, 5, 5];
+
+		function getAverageGrade(grades) {
+			let sumGrades = 0;
+
+			for (let i = 0; i < grades.length; i++) {
+				sumGrades += grades[i];
+			}
+
+			return sumGrades / grades.length;
+		}
+
+		function getNumberOfGrade(grades, grade) {
+			let numberOfGrade = 0;
+
+			for (let i = 0; i < grades.length; i++) {
+				if (grades[i] === grade) {
+					numberOfGrade++;
+				}
+			}
+
+			return numberOfGrade;
+		}
+
+		function getCategoryPupil(grades) {
+			let categoryPupil;
+			const numberOfFive = getNumberOfGrade(grades, 5);
+
+			for (let i = 0; i < grades.length; i++) {
+
+				if (grades[i] === 2) {
+					categoryPupil = "Двійочник";
+					break;
+				} else if (grades[i] === 3) {
+					categoryPupil = "Трійочник";
+					break;
+				} else if (numberOfFive === grades.length) {
+					categoryPupil = "Відмінник";
+				} else {
+					categoryPupil = "Хорошист";
+				}
+			}
+			return categoryPupil;
+		}
+
+		const averageGrade = getAverageGrade(grades);
+		const categoryPupil = getCategoryPupil(grades);
+
+		document.write(`Середній бал: ${averageGrade}<br>`);
+		document.write(`Категорія учня: ${categoryPupil}<br>`);
+	</script>
+
+</body>
+
+</html>

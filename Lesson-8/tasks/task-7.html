@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 7</title>
+</head>
+
+<body>
+	<h1>Задача 7</h1>
+
+	<p>Дано послідовність платіжок протягом року. Знайти сумарну кількість грошей за:
+		<ol>
+			<li>за весь рік;</li>
+			<li>у першій половині року;</li>
+			<li>у другій половині року;</li>
+			<li>за літо;</li>
+			<li>за ІІ квартал;</li>
+			<li>за парні місяці (з парними номерами);</li>
+			<li>за місяці, які є початковими у сезоні (весна, літо, осінь, зима).</li>
+		</ol>
+	</p>
+
+	<script>
+		const payments = [521, 96, 78, 35, 981, 23, 470, 689, 48, 23, 45, 213];
+
+		function getAmountForYear(payments) {
+			let amountForYear = 0;
+
+			for (let month = 0; month < payments.length; month++) {
+				amountForYear += payments[month];
+			}
+
+			return amountForYear;
+		}
+
+		function getAmountForFirstHalfOfYear(payments) {
+			let amountForYear = 0;
+
+			for (let month = 0; month < 6; month++) {
+				amountForYear += payments[month];
+			}
+
+			return amountForYear;
+		}
+
+		function getAmountForSecondHalfOfYear(payments) {
+			let amountForYear = 0;
+
+			for (let month = 6; month < payments.length; month++) {
+				amountForYear += payments[month];
+			}
+
+			return amountForYear;
+		}
+
+		function getAmountForSummer(payments) {
+			let amountForYear = 0;
+
+			for (let month = 5; month < 8; month++) {
+				amountForYear += payments[month];
+			}
+
+			return amountForYear;
+		}
+
+		function getAmountForSecondQuarter(payments) {
+			let amountForYear = 0;
+
+			for (let month = 3; month < 6; month++) {
+				amountForYear += payments[month];
+			}
+
+			return amountForYear;
+		}
+
+		function getAmountForPairedMonths(payments) {
+			let amountForYear = 0;
+
+			for (let month = 0; month < payments.length; month++) {
+				if (month % 2 !== 0) {
+					amountForYear += payments[month];
+				}
+			}
+
+			return amountForYear;
+		}
+
+		function getAmountForMonthOfStartSeason(payments) {
+			let amountForYear = 0;
+
+			for (let month = 2; month < payments.length; month += 3) {
+				amountForYear += payments[month];
+			}
+
+			return amountForYear;
+		}
+
+		const amountForYear = getAmountForYear(payments);
+		const amountForFirstHalfOfYear = getAmountForFirstHalfOfYear(payments);
+		const amountForSecondHalfOfYear = getAmountForSecondHalfOfYear(payments);
+		const amountForSummer = getAmountForSummer(payments);
+		const amountForSecondQuarter = getAmountForSecondQuarter(payments);
+		const amountForPairedMonths = getAmountForPairedMonths(payments);
+		const amountForMonthOfStartSeason = getAmountForMonthOfStartSeason(payments);
+
+		document.write(`Сумарна кількість грошей за весь рік: ${amountForYear} грн. <br>`);
+		document.write(`Сумарна кількість грошей у першій половині року: ${amountForFirstHalfOfYear} грн.<br>`);
+		document.write(`Сумарна кількість грошей за ІІ квартал: ${amountForSecondQuarter} грн.<br>`);
+		document.write(`Сумарна кількість грошей за парні місяці (з парними номерами): ${amountForPairedMonths} грн.<br>`);
+		document.write(
+			`Сумарна кількість грошей за місяці, які є початковими у сезоні (весна, літо, осінь, зима): ${amountForMonthOfStartSeason} грн.<br>`
+		);
+	</script>
+
+</body>
+
+</html>

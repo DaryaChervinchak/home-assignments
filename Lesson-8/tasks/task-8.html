@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 8</title>
+</head>
+
+<body>
+	<h1>Задача 8</h1>
+
+	<p>Дано одновимірний масив, у якому зберігається певна виграшна сума (елементи заповнюються випадковим чином
+		значеннями від -500 до 500). Надаючи користувачу можливість вибирати номери елементів (поки він не відмовиться).
+		Знаходити сумарний виграш. </p>
+
+	<script>
+		function getRandomSum(from, to) {
+			const minRandomSum = Math.ceil(from);
+			const maxRandomSum = Math.floor(to);
+			const randomSum = Math.floor(Math.random() * (maxRandomSum - minRandomSum + 1) + minRandomSum);
+
+			return randomSum;
+		}
+
+		function createArrayWithRandomSum(from, to) {
+			let arrayWithRandomSum = [];
+			for (let i = 0; i < 10; i++) {
+				arrayWithRandomSum.push(getRandomSum(from, to));
+			}
+			return arrayWithRandomSum;
+		}
+
+		function showFinalWinnings() {
+			let finalWinning = 0;
+			let isContinue;
+			const arrayWithRandomSum = createArrayWithRandomSum(-500, 500);
+
+			do {
+				const userNumberElement = parseInt(prompt("Оберіть номер елемента від 1 до 10"));
+
+				if (userNumberElement < 1 || userNumberElement > 10) throw new Error("Неккоректний номер елемента");
+
+				if (userNumberElement) {
+					finalWinning += arrayWithRandomSum[userNumberElement - 1];
+
+					isContinue = confirm(
+						`Ви виграли ${arrayWithRandomSum[userNumberElement - 1]}, загальна сумма виграшу становить ${finalWinning}. Продовжити гру?`
+					)
+				} else {
+					isContinue = false;
+				}
+
+			} while (isContinue);
+
+			document.write(`Загальна сумма виграшу становить: ${finalWinning}`);
+		}
+		showFinalWinnings();
+	</script>
+
+</body>
+
+</html>

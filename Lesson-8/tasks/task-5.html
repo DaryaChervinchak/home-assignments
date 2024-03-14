@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 5</title>
+</head>
+
+<body>
+	<h1>Задача 5</h1>
+
+	<p>Дано послідовність оцінок учня. Підрахувати кількість:
+		<ol>
+			<li>двійок;</li>
+			<li>кількість хороших оцінок (добре, відмінно);</li>
+			<li>кількість оцінок, які нижче середнього.</li>
+		</ol>
+	</p>
+
+	<script>
+		const grades = [2, 5, 4, 2, 5, 4, 3, 5];
+
+		function getNumberOfGrade(grades, number) {
+			let numberOfGrade = 0;
+
+			for (let grade = 0; grade < grades.length; grade++) {
+				if (grades[grade] === number) {
+					numberOfGrade++;
+				}
+			}
+
+			return numberOfGrade;
+		}
+
+		function getNumberOfGoodGrades(grades) {
+			let numberOfGoodGrades = 0;
+
+			for (let grade = 0; grade < grades.length; grade++) {
+				if (grades[grade] === 5 || grades[grade] === 4) {
+					numberOfGoodGrades++;
+				}
+			}
+
+			return numberOfGoodGrades;
+		}
+
+		function getAverageGrade(grades) {
+			let sumGrades = 0;
+
+			for (let grade = 0; grade < grades.length; grade++) {
+				sumGrades += grades[grade];
+			}
+
+			return sumGrades / grades.length;
+		}
+
+		function getNumberOfGradesGreaterThanAverage(grades) {
+			const averageGrade = getAverageGrade(grades);
+			let numberOfGradesGreaterThanAverage = 0;
+
+			for (let grade = 0; grade < grades.length; grade++) {
+				if (grades[grade] < averageGrade) {
+					numberOfGradesGreaterThanAverage++;
+				}
+			}
+			return numberOfGradesGreaterThanAverage;
+		}
+
+		const numberOfGrade = getNumberOfGrade(grades, 2);
+		const numberOfGoodGrades = getNumberOfGoodGrades(grades);
+		const numberOfGradesGreaterThanAverage = getNumberOfGradesGreaterThanAverage(grades);
+
+		document.write(`Кількість двійок: ${numberOfGrade}<br>`);
+		document.write(`Кількість хороших оцінок (добре, відмінно): ${numberOfGoodGrades}<br>`);
+		document.write(`Кількість оцінок, які нижче середнього: ${numberOfGradesGreaterThanAverage}<br>`);
+	</script>
+
+</body>
+
+</html>

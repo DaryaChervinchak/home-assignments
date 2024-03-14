@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 4</title>
+</head>
+
+<body>
+	<h1>Задача 4</h1>
+	<p>Дано послідовність номерів автомобілів. Підрахувати кількість номерів, які:
+		<ol>
+			<li>починаються на букву «А»;</li>
+			<li>перша і остання літери співпадають;</li>
+			<li>складаються з більше ніш 5 символів;</li>
+		</ol>
+	</p>
+
+	<script>
+		const carNumbers = ['BX 6036 BH', 'AC 1533 BE', 'BB 4177 CH', 'AA 6126 MA', 'AE 8181 EX'];
+
+		function getNumberOfNumbersStartWithLetter(carNumbers, letter) {
+			let numberOfNumbersStartWithLetter = 0;
+
+			for (let number = 0; number < carNumbers.length; number++) {
+				if (carNumbers[number].charAt(0) === letter) numberOfNumbersStartWithLetter++;
+			}
+			return numberOfNumbersStartWithLetter;
+		}
+
+		function getNumberOfNumbersWhereFistAndLastLetterEqual(carNumbers) {
+			let numberOfNumbersWhereFistAndLastLetterEqual = 0;
+
+			for (let number = 0; number < carNumbers.length; number++) {
+				if (carNumbers[number].charAt(0) === carNumbers[number].charAt(carNumbers[number].length - 1))
+					numberOfNumbersWhereFistAndLastLetterEqual++;
+			}
+			return numberOfNumbersWhereFistAndLastLetterEqual;
+		}
+
+		function getNumberOfNumbersWhereLengthLargerNumeric(carNumbers, numeric) {
+			let numberOfNumbersWhereLengthLargerNumeric = 0;
+
+			for (let number = 0; number < carNumbers.length; number++) {
+				if (carNumbers[number].length > numeric) numberOfNumbersWhereLengthLargerNumeric++;
+			}
+			return numberOfNumbersWhereLengthLargerNumeric;
+		}
+
+		const numberOfNumbersStartWithA = getNumberOfNumbersStartWithLetter(carNumbers, 'A');
+		const numberOfNumbersWhereFistAndLastLetterEqual = getNumberOfNumbersWhereFistAndLastLetterEqual(carNumbers);
+		const numberOfNumbersWhereLengthLargerFive = getNumberOfNumbersWhereLengthLargerNumeric(carNumbers, 5);
+		document.write(
+			`Кількість номерів, які починаються на букву «А»: ${numberOfNumbersStartWithA} <br>`);
+		document.write(
+			`Кількість номерів де перша і остання літери співпадають: ${numberOfNumbersWhereFistAndLastLetterEqual} <br>`);
+		document.write(
+			`Кількість номерів складаються з більше ніш 5 символів: ${numberOfNumbersWhereLengthLargerFive}`);
+	</script>
+
+</body>
+
+</html>
