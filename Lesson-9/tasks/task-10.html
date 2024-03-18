@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 10</title>
+</head>
+
+<body>
+	<h1>Задача 10</h1>
+
+	<p>Дано масив цін у грн. Податок складає 20%. Сформувати масив, який буде містити величину сплаченого податку у грн.
+	</p>
+
+	<script>
+		function getPercentOfNumber(number, percent) {
+			const ONE_HUNDRED_PERCENT = 100;
+			return number * percent / ONE_HUNDRED_PERCENT;
+		}
+
+		function getArrayTax(array, percent = 20) {
+			const arrayTax = array.map(element => getPercentOfNumber(element, percent));
+			return arrayTax;
+		}
+
+		const arrayPrices = [1020, 748, 63, 2969, 3500, 2789, 498, 25];
+		document.write(getArrayTax(arrayPrices));
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 9</title>
+</head>
+
+<body>
+	<h1>Задача 9</h1>
+
+	<p>Дано масив імен. Сформувати масив з перших літер цих імен.</p>
+
+	<script>
+		function createArrayFromFirstLetter(array) {
+			const newArray = array.map(element => element[0]);
+			return newArray;
+		}
+
+		const names = ['Іван', 'Степан', 'Катерина', 'Ольга', 'Андрій', 'Світлана', 'Іван'];
+
+		document.write(createArrayFromFirstLetter(names));
+	</script>
+
+</body>
+
+</html>

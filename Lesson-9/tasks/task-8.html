@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 8</title>
+</head>
+
+<body>
+	<h1>Задача 8</h1>
+
+	<p>Дано масив номерів авто. Сформувати новий масив тих, які починаються на «А».</p>
+
+	<script>
+		function createArrayWhereElementsStartOnLetter(array, letter = "A") {
+			const newArray = array.filter(element => element[0] === letter);
+			return newArray;
+		}
+
+		const carNumbers = ['BX 6036 BH', 'AC 1533 BE', 'BB 4177 CH', 'AA 6126 MA', 'AE 2897 BX'];
+
+		document.write(createArrayWhereElementsStartOnLetter(carNumbers));
+	</script>
+
+</body>
+
+</html>

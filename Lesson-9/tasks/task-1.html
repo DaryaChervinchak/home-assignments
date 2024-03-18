@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 1</title>
+</head>
+
+<body>
+	<h1>Задача 1</h1>
+
+	<p>Користувач вводить кількість елементів. Створити масив, що складається з вказаної кількості елементів заповнених
+		нулями.</p>
+
+	<script>
+		function createArray(countElements, elementValue = 0) {
+			const array = new Array(countElements).fill(elementValue);
+			return array;
+		}
+
+		const userCountElements = parseInt(prompt('Введіть кількість елементів', '0'));
+		document.write(createArray(userCountElements));
+	</script>
+
+</body>
+
+</html>

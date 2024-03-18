@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 7</title>
+</head>
+
+<body>
+	<h1>Задача 7</h1>
+
+	<p>Дано масив цін. Змінити цей масив так, що на ціни товарів, які більші за 1000 грн. дати 30% знижки.</p>
+
+	<script>
+		function getPercentOfNumber(number, percent) {
+			const ONE_HUNDRED_PERCENT = 100;
+			return number * percent / ONE_HUNDRED_PERCENT;
+		}
+
+		function getArrayWithDiscount(array, number = 1000, percent = 30) {
+			array.forEach((element, index, arrayBase) => {
+				if (element > number) arrayBase[index] = element - getPercentOfNumber(element, percent);
+			});
+
+			return array;
+		}
+
+		const arrayPrices = [1020, 748, 63, 2969, 3500, 2789, 498, 25];
+		document.write(getArrayWithDiscount(arrayPrices));
+	</script>
+
+</body>
+
+</html>

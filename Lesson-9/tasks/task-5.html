@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 5</title>
+</head>
+
+<body>
+	<h1>Задача 5</h1>
+
+	<p>Дано масив елементів. Знайти добуток додатних елементів.</p>
+
+	<script>
+		function getMultiplicationPositiveElements(array) {
+			let multiplicationPositiveElements = 1;
+			for (const element of array) {
+				if (element > 0) multiplicationPositiveElements *= element;
+			}
+			return multiplicationPositiveElements;
+		}
+
+		const arrayElements = [5, 10, -547, 7, -68, 9, -393, 1, -904, 12];
+		document.write(`Добуток додатних елементів: ${getMultiplicationPositiveElements(arrayElements)} `)
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 3</title>
+</head>
+
+<body>
+	<h1>Задача 3</h1>
+
+	<p>Користувач вводить кількість елементів. Створити масив, у якому перші 5 елементів заповнені 1-цями, а інші до
+		кінця масиву заповнені 7-ками. </p>
+
+	<script>
+		function createArray(countElements, firstElementValue = 5, secondElementValue = 7) {
+
+			const array = new Array(countElements).fill(firstElementValue, 0, 5).fill(secondElementValue,
+				5);
+
+			return array;
+		}
+
+		const userCountElements = parseInt(prompt('Введіть кількість елементів', '0'));
+		document.write(createArray(userCountElements));
+	</script>
+
+</body>
+
+</html>
