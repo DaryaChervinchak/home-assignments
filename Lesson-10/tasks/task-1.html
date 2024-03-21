@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 1</title>
+</head>
+
+<body>
+	<h1>Задача 1</h1>
+	<p>Дано історію цін на цінні папери за деякий період (згенерувати від 1 до 10000).
+		<ol>
+			<li>Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.</li>
+			<li>Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн.</li>
+			<li>Сформувати список з тих цін, які більші за попереднє значення</li>
+			<li>Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального</li>
+			<li>Підрахувати кількість змін цін</li>
+			<li>Визначити, чи є ціна, що менше 1000</li>
+			<li>Визначати, чи усі ціни більше за 1000</li>
+			<li>Підрахувати кількість цін, що більше за 1000</li>
+			<li>Підрахувати суму цін, що більше за 1000</li>
+			<li>Знайти першу ціну, що більше за 1000</li>
+			<li>Знайти індекс першої ціни, що більше за 1000</li>
+			<li>Знайти останню ціну, що більше за 1000</li>
+			<li>Знайти індекс останньої ціни, що більше за 1000</li>
+		</ol>
+	</p>
+
+	<script>
+		//Історія цін на цінні папери за 14 місяців
+
+		function getRandomPrice(from, to) {
+			const minRandomPrice = Math.ceil(from);
+			const maxRandomPrice = Math.floor(to);
+			const randomPrice = Math.floor(Math.random() * (maxRandomPrice - minRandomPrice + 1) + minRandomPrice);
+
+			return randomPrice;
+		}
+
+		function createArrayWithRandomPricess(from, to) {
+			let arrayWithRandomPrices = [];
+			for (let i = 0; i < 14; i++) {
+				arrayWithRandomPrices.push(getRandomPrice(from, to));
+			}
+			return arrayWithRandomPrices;
+		}
+
+		const arrayWithRandomPrices = createArrayWithRandomPricess(1, 10000);
+
+		document.write(`<p>Історія цін на цінні папери за 14 місяців: ${arrayWithRandomPrices}</p>`);
+
+		//Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.
+		const arrayOfPricesMoreThanThousand = arrayWithRandomPrices.filter(price => price > 1000);
+
+		document.write(`<p>Масив, у якому є тільки ті, що більші за 1000 грн.: ${arrayOfPricesMoreThanThousand}</p>`);
+
+		//Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн.
+		let arrayOfPriceIndexesMoreThanThousand = [];
+
+		arrayWithRandomPrices.forEach((price, index) => {
+			if (price > 1000) arrayOfPriceIndexesMoreThanThousand.push(index + 1);
+		});
+
+		document.write(
+			`<p>Масив, у якому є номери тільки тих, що більші за 1000 грн.: ${arrayOfPriceIndexesMoreThanThousand}</p>`);
+
+		//Сформувати список з тих цін, які більші за попереднє значення
+		const arrayWherePriceMoreThanPreviousPrice = arrayWithRandomPrices.filter(
+			(price, index, baseArray) => index !== 0 && price > baseArray[index - 1]
+		);
+
+		document.write(`Список з тих цін, які більші за попереднє значення: ${arrayWherePriceMoreThanPreviousPrice}`);
+
+		//Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального
+		const ONE_HUNDRED_PERCENT = 100;
+		const maxPrice = arrayWithRandomPrices.reduce((prevMaxPrice, price) => price > prevMaxPrice ? price : prevMaxPrice);
+
+		const arrayPricesInPercent = arrayWithRandomPrices.map(price => Math.round(price * ONE_HUNDRED_PERCENT / maxPrice));
+		document.write(`<p>Масив, що містить значення цін у відсотках стосовно максимального: ${arrayPricesInPercent}</p>`)
+
+		//Підрахувати кількість змін цін
+		const numbeOfPricesChanges = arrayWithRandomPrices.reduce((prevNumbeOfPricesChanges, price, index, baseArray) =>
+			index !== 0 && price !== baseArray[index - 1] ? prevNumbeOfPricesChanges + 1 : prevNumbeOfPricesChanges, 0
+		);
+		document.write(`<p>Кількість змін цін: ${numbeOfPricesChanges}</p>`)
+
+		//Визначити, чи є ціна, що менше 1000
+		const isPriceLessThanThousand = arrayWithRandomPrices.find(element => element < 1000);
+
+		if (typeof isPriceLessThanThousand === 'undefined') document.write('<p>Ні, ціни менше 1000 немає</p>');
+		else document.write('<p>Так, є ціна менше 1000</p>');
+
+		//Визначати, чи усі ціни більше за 1000
+		const isAllPricesMoreThanThousand = arrayWithRandomPrices.every(price => price > 1000);
+
+		if (isAllPricesMoreThanThousand) document.write('<p>Так, усі ціни більше за 1000</p>');
+		else document.write('<p>Не усі ціни більше за 1000</p>');
+
+		//Підрахувати кількість цін, що більше за 1000
+		const numberOfPricesMoreThanThousand = arrayWithRandomPrices.reduce((prevNumberOfPricesMoreThanThousand, price) =>
+			price > 1000 ? prevNumberOfPricesMoreThanThousand + 1 : prevNumberOfPricesMoreThanThousand, 0
+		);
+
+		document.write(`<p>Кількість цін, що більше за 1000: ${numberOfPricesMoreThanThousand}</p>`);
+
+		//Підрахувати суму цін, що більше за 1000
+
+		const sumOfPricesMoreThanThousand = arrayWithRandomPrices.reduce((prevSumOfPricesMoreThanThousand, price) =>
+			price > 1000 ? prevSumOfPricesMoreThanThousand + price : prevSumOfPricesMoreThanThousand, 0
+		);
+		document.write(`<p>Сума цін, що більше за 1000: ${sumOfPricesMoreThanThousand}</p>`);
+
+		//Знайти першу ціну, що більше за 1000
+		const firstPriceMoreThanThousand = arrayWithRandomPrices.find(element => element > 1000);
+
+		document.write(`<p>Перша ціна, що більше за 1000: ${firstPriceMoreThanThousand}</p>`);
+
+		//Знайти індекс першої ціни, що більше за 1000
+
+		const firstPriceIndexMoreThanThousand = arrayWithRandomPrices.findIndex(element => element > 1000);
+
+		document.write(`<p>Індекс першої ціни, що більше за 1000: ${firstPriceIndexMoreThanThousand}</p>`);
+
+		// Знайти останню ціну, що більше за 1000
+		const lastPriceMoreThanThousand = arrayWithRandomPrices.findLast(element => element > 1000);
+
+		document.write(`<p>Останню ціну, що більше за 1000: ${lastPriceMoreThanThousand}</p>`);
+
+		//Знайти індекс останньої ціни, що більше за 1000
+		const lastPriceIndexMoreThanThousand = arrayWithRandomPrices.findLastIndex(element => element > 1000);
+
+		document.write(`<p>Індекс останньої ціни, що більше за 1000: ${lastPriceIndexMoreThanThousand}</p>`);
+	</script>
+</body>
+
+</html>
