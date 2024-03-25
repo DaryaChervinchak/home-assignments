@@ -57,11 +57,12 @@
 		document.write(`<p>Масив, у якому є тільки ті, що більші за 1000 грн.: ${arrayOfPricesMoreThanThousand}</p>`);
 
 		//Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн.
-		let arrayOfPriceIndexesMoreThanThousand = [];
 
-		arrayWithRandomPrices.forEach((price, index) => {
-			if (price > 1000) arrayOfPriceIndexesMoreThanThousand.push(index + 1);
-		});
+		const arrayOfPriceIndexesMoreThanThousand = arrayWithRandomPrices.reduce((prevPriceIndexesMoreThanThousand, price,
+			index) => {
+			if (price > 1000) prevPriceIndexesMoreThanThousand.push(index + 1);
+			return prevPriceIndexesMoreThanThousand;
+		}, []);
 
 		document.write(
 			`<p>Масив, у якому є номери тільки тих, що більші за 1000 грн.: ${arrayOfPriceIndexesMoreThanThousand}</p>`);
