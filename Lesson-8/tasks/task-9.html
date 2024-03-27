@@ -37,21 +37,23 @@
 		}
 
 		function addShipsInArray(array, shipsNumber) {
-			for (let i = 0; i < shipsNumber; i++) {
-				let randomPositionShip = getRandomPositionShip(0, array.length - 1);
+			let randomPositionShip;
 
-				if (array[randomPositionShip] === 1) {
-					randomPositionShip = getRandomPositionShip(0, array.length - 1);
+			do {
+				randomPositionShip = getRandomPositionShip(0, array.length - 1);
+
+				if (array[randomPositionShip] !== 1) {
+					array[randomPositionShip] = 1;
+					shipsNumber--;
 				}
-				array[randomPositionShip] = 1;
-			}
+
+			} while (shipsNumber !== 0);
 
 			return array;
 		}
 
-		function seaBattle(arrayLength, shipsNumber) {
-			const arrayWithoutShips = createArrayWithoutShips(arrayLength);
-			const arrayWithShips = addShipsInArray(arrayWithoutShips, shipsNumber);
+
+		function seaBattle(arrayLength, shipsNumber, arrayWithShips) {
 
 			do {
 				const userPositionShip = parseInt(prompt(`Введіть номер клітинки для пострілу від 1 до ${arrayLength}`));
@@ -80,7 +82,9 @@
 		const shipsNumber = parseInt(prompt("Введіть кількість одиночних кораблів", "0"));
 		if (shipsNumber < 1 || shipsNumber > arrayLength) throw new Error("Невірна кількість одиночних кораблів");
 
-		seaBattle(arrayLength, shipsNumber);
+		const arrayWithoutShips = createArrayWithoutShips(arrayLength);
+		const arrayWithShips = addShipsInArray(arrayWithoutShips, shipsNumber);
+		seaBattle(arrayLength, shipsNumber, arrayWithShips);
 	</script>
 
 </body>

@@ -24,18 +24,19 @@
 			return randomSum;
 		}
 
-		function createArrayWithRandomSum(from, to) {
+		function createArrayWithRandomSum(from, to, length) {
 			let arrayWithRandomSum = [];
-			for (let i = 0; i < 10; i++) {
+			for (let i = 0; i < length; i++) {
 				arrayWithRandomSum.push(getRandomSum(from, to));
 			}
 			return arrayWithRandomSum;
 		}
 
-		function showFinalWinnings() {
+		const arrayWithRandomSum = createArrayWithRandomSum(-500, 500, 10);
+
+		function showFinalWinnings(arrayWithRandomSum) {
 			let finalWinning = 0;
 			let isContinue;
-			const arrayWithRandomSum = createArrayWithRandomSum(-500, 500);
 
 			do {
 				const userNumberElement = parseInt(prompt("Оберіть номер елемента від 1 до 10"));
@@ -54,9 +55,10 @@
 
 			} while (isContinue);
 
-			document.write(`Загальна сумма виграшу становить: ${finalWinning}`);
+			return finalWinning;
 		}
-		showFinalWinnings();
+
+		document.write(`Загальна сумма виграшу становить: ${showFinalWinnings(arrayWithRandomSum)}`);
 	</script>
 
 </body>

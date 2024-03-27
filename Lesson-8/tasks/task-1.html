@@ -16,7 +16,7 @@
 		трійка)).</p>
 
 	<script>
-		const grades = [5, 5, 2, 3, 4, 4, 5, 5];
+		const grades = [5, 5, 3, 4, 4, 5, 5];
 
 		function getAverageGrade(grades) {
 			let sumGrades = 0;
@@ -28,35 +28,28 @@
 			return sumGrades / grades.length;
 		}
 
-		function getNumberOfGrade(grades, grade) {
-			let numberOfGrade = 0;
-
-			for (let i = 0; i < grades.length; i++) {
-				if (grades[i] === grade) {
-					numberOfGrade++;
-				}
-			}
-
-			return numberOfGrade;
+		function getMinGrade(grades) {
+			return Math.min(...grades);
 		}
 
 		function getCategoryPupil(grades) {
 			let categoryPupil;
-			const numberOfFive = getNumberOfGrade(grades, 5);
 
-			for (let i = 0; i < grades.length; i++) {
+			const minGrade = getMinGrade(grades);
 
-				if (grades[i] === 2) {
-					categoryPupil = "Двійочник";
+			switch (minGrade) {
+				case 5:
+					categoryPupil = 'Відмінник';
 					break;
-				} else if (grades[i] === 3) {
-					categoryPupil = "Трійочник";
+				case 4:
+					categoryPupil = 'Хорошист';
 					break;
-				} else if (numberOfFive === grades.length) {
-					categoryPupil = "Відмінник";
-				} else {
-					categoryPupil = "Хорошист";
-				}
+				case 3:
+					categoryPupil = 'Трійочник';
+					break;
+				default:
+					categoryPupil = 'Двійочник';
+					break;
 			}
 			return categoryPupil;
 		}
