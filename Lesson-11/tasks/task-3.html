@@ -87,10 +87,10 @@
 		}
 
 		const arrayRowsLength = parseInt(prompt("Введіть кількість рядків у масиві", "6"));
-		if (arrayRowsLength < 1) throw new Error("Невірна кількість клітинок масиву");
+		if (arrayRowsLength < 1) throw new Error("Невірна кількість рядків у масиві");
 
 		const arrayColumnsLength = parseInt(prompt("Введіть кількість стовпців у масиві", "6"));
-		if (arrayColumnsLength < 1) throw new Error("Невірна кількість клітинок масиву");
+		if (arrayColumnsLength < 1) throw new Error("Невірна кількість стовпців у масиві");
 
 		const shipsNumber = parseInt(prompt("Введіть кількість одиночних кораблів", "5"));
 		if (shipsNumber < 1 || shipsNumber > arrayRowsLength * arrayColumnsLength) throw new Error(
