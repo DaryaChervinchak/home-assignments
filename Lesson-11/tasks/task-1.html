@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 1</title>
+</head>
+
+<body>
+	<h1>Задача 1</h1>
+
+	<p>Знайти суми елементів у вказаній області.
+		<ol>
+			<li>Номери рядків від 0 до половини, стовпці від 0 до половини.</li>
+			<li>Номери рядків від 0 до половини, стовпці від половини до кінця.</li>
+			<li>Номери рядків від половини до кінця, стовпці від 0 до половини.</li>
+			<li>Номери рядків від половини до кінця , стовпці від половини до кінця.</li>
+			<li>Суму парних рядків.</li>
+			<li>Суму непарних стовпців.</li>
+			<li>У парних рядках – непарні стовпці, у непарних – парні.</li>
+		</ol>
+	</p>
+
+
+	<script>
+		const array = [
+			[15, 36, 24, 8],
+			[10, 78, 46, 50],
+			[22, 71, 99, 63],
+			[16, 31, 28, 9]
+		];
+		//Номери рядків від 0 до половини, стовпці від 0 до половини
+
+		const halfRows = Math.floor(array.length / 2);
+		let sumRowsAndColumnsFromZeroToHalf = 0;
+
+		for (let rowIndex = 0; rowIndex < halfRows; rowIndex++) {
+			const halfColumns = Math.floor(array[rowIndex].length / 2);
+
+			for (let columnIndex = 0; columnIndex < halfColumns; columnIndex++) {
+				sumRowsAndColumnsFromZeroToHalf += array[rowIndex][columnIndex];
+			}
+
+		}
+
+		//Номери рядків від 0 до половини, стовпці від половини до кінця
+
+		let sumRowsFromZeroToHalfColumnsFromHalfToEnd = 0;
+
+		for (let rowIndex = 0; rowIndex < halfRows; rowIndex++) {
+			const halfColumns = Math.floor(array[rowIndex].length / 2);
+			for (let columnIndex = halfColumns; columnIndex < array[rowIndex].length; columnIndex++) {
+				sumRowsFromZeroToHalfColumnsFromHalfToEnd += array[rowIndex][columnIndex];
+			}
+		}
+
+		//Номери рядків від половини до кінця, стовпці від 0 до половини
+
+		let sumRowsFromHalfToEndColumnsFromZeroToHalf = 0;
+
+		for (let rowIndex = halfRows; rowIndex < array.length; rowIndex++) {
+			const halfColumns = Math.floor(array[rowIndex].length / 2);
+			for (let columnIndex = 0; columnIndex < halfColumns; columnIndex++) {
+				sumRowsFromHalfToEndColumnsFromZeroToHalf += array[rowIndex][columnIndex];
+			}
+		}
+
+		//Номери рядків від половини до кінця , стовпці від половини до кінця
+
+		let sumRowsAndColumnsFromHalfToEnd = 0;
+
+		for (let rowIndex = halfRows; rowIndex < array.length; rowIndex++) {
+			const halfColumns = Math.floor(array[rowIndex].length / 2);
+			for (let columnIndex = halfRows; columnIndex < array[rowIndex].length; columnIndex++) {
+				sumRowsAndColumnsFromHalfToEnd += array[rowIndex][columnIndex];
+			}
+		}
+
+		//Суму парних рядків
+
+		let sumOfEvenRows = 0;
+
+		for (let rowIndex = 1; rowIndex < array.length; rowIndex += 2) {
+			for (let columnIndex = 0; columnIndex < array[rowIndex].length; columnIndex++) {
+				sumOfEvenRows += array[rowIndex][columnIndex];
+			}
+		}
+
+		//Суму непарних стовпців
+
+		let sumOfOddColumns = 0;
+
+		for (let rowIndex = 0; rowIndex < array.length; rowIndex++) {
+			for (let columnIndex = 0; columnIndex < array[rowIndex].length; columnIndex += 2) {
+				sumOfOddColumns += array[rowIndex][columnIndex];
+			}
+		}
+
+		//У парних рядках – непарні стовпці, у непарних – парні
+
+		let sumOfEvenRowsOddColumns = 0;
+
+		for (let rowIndex = 1; rowIndex < array.length; rowIndex += 2) {
+			for (let columnIndex = 0; columnIndex < array[rowIndex].length; columnIndex += 2) {
+				sumOfEvenRowsOddColumns += array[rowIndex][columnIndex];
+			}
+		}
+
+		let sumOfOddRowsEvenColumns = 0;
+
+		for (let rowIndex = 0; rowIndex < array.length; rowIndex += 2) {
+			for (let columnIndex = 1; columnIndex < array[rowIndex].length; columnIndex += 2) {
+				sumOfOddRowsEvenColumns += array[rowIndex][columnIndex];
+			}
+		}
+
+		let sumOfEvenRowsOddColumnsAndOddRowsEvenColumns = sumOfEvenRowsOddColumns + sumOfOddRowsEvenColumns;
+
+		document.write('<ol>');
+		document.write(
+			`<li>Сума елементів (номери рядків від 0 до половини, стовпці від 0 до половини): ${sumRowsAndColumnsFromZeroToHalf}</li>`
+		);
+		document.write(
+			`<li>Сума елементів (номери рядків від 0 до половини, стовпці від половини до кінця): ${sumRowsFromZeroToHalfColumnsFromHalfToEnd}</li>`
+		);
+		document.write(
+			`<li>Сума елементів (номери рядків від половини до кінця, стовпці від 0 до половини): ${sumRowsFromHalfToEndColumnsFromZeroToHalf}</li>`
+		);
+		document.write(
+			`<li>Сума елементів (омери рядків від половини до кінця , стовпці від половини до кінця): ${sumRowsAndColumnsFromHalfToEnd}</li>`
+		);
+		document.write(
+			`<li>Сума парних рядків: ${sumOfEvenRows}</li>`
+		);
+		document.write(
+			`<li>Сума непарних стовпців: ${sumOfOddColumns}</li>`
+		);
+		document.write(
+			`<li>Сума елементів (у парних рядках – непарні стовпці, у непарних – парні): ${sumOfEvenRowsOddColumnsAndOddRowsEvenColumns}</li>`
+		);
+		document.write('</ol>');
+	</script>
+
+</body>
+
+</html>

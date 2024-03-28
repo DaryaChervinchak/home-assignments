@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 3</title>
+</head>
+
+<body>
+	<h1>Задача 3</h1>
+
+	<p>Морський бій. Випадковим чином на двовимірному полі розміром 6*6 розташовується 5 кораблів. Користувач стріляє
+		вказуючи координати. Гра продовжується поки не потоплено усі кораблі або у користувача не закінчаться снаряди.
+	</p>
+
+	<script>
+		function getRandomPositionShip(from, to) {
+			const minPositionShip = Math.ceil(from);
+			const maxPositionShip = Math.floor(to);
+			const randomPositionShip = Math.floor(Math.random() * (maxPositionShip - minPositionShip + 1) + minPositionShip);
+
+			return randomPositionShip;
+		}
+
+		function createArrayWithoutShips(arrayLength) {
+			let arrayWithoutShips = new Array(arrayLength);
+
+			for (let i = 0; i < arrayWithoutShips.length; i++) {
+				arrayWithoutShips[i] = 0;
+			}
+			return arrayWithoutShips;
+		}
+
+		function createTableWithoutShips(tableLength, arrayLength) {
+			let tableWithoutShips = new Array(tableLength);
+
+			for (let i = 0; i < tableWithoutShips.length; i++) {
+				tableWithoutShips[i] = createArrayWithoutShips(arrayLength);
+			}
+			return tableWithoutShips;
+		}
+
+		function addShipsInTable(array, shipsNumber, from, to) {
+			let randomRowPositionShip;
+			let randomColumnPositionShip;
+
+			do {
+				randomRowPositionShip = getRandomPositionShip(from, to);
+				randomColumnPositionShip = getRandomPositionShip(from, to);
+
+				if (array[randomRowPositionShip][randomColumnPositionShip] !== 1) {
+					array[randomRowPositionShip][randomColumnPositionShip] = 1;
+					shipsNumber--;
+				}
+
+			} while (shipsNumber !== 0);
+			return array;
+		}
+
+		function seaBattle(tableWithShips, shipsNumber, userNumberOfShells, arrayRowsLength, arrayColumnsLength) {
+
+			do {
+				const userRowPositionShip = parseInt(prompt(`Введіть номер рядку для пострілу від 1 до ${arrayRowsLength}`));
+				const userColumnPositionShip = parseInt(prompt(
+					`Введіть номер стовпця для пострілу від 1 до ${arrayColumnsLength}`));
+
+				if ((userRowPositionShip < 1 || userRowPositionShip > arrayRowsLength) || (userColumnPositionShip < 1 ||
+						userColumnPositionShip > arrayColumnsLength)) {
+					throw new Error("Невірний номер клітинки");
+				}
+				userNumberOfShells--;
+
+				if (tableWithShips[userRowPositionShip - 1][userColumnPositionShip - 1] === 1) {
+					tableWithShips[userRowPositionShip - 1][userColumnPositionShip - 1] = 0;
+					shipsNumber--;
+					alert("Влучили");
+				} else alert("Ви не влучили");
+
+			} while (shipsNumber > 0 && userNumberOfShells > 0);
+
+			if (shipsNumber > 0 && userNumberOfShells === 0) {
+				alert("Нажаль снаряди закінчились, ви програли!");
+			} else alert("Вітаємо, ви потопили всі кораблі!");
+
+		}
+
+		const arrayRowsLength = parseInt(prompt("Введіть кількість рядків у масиві", "6"));
+		if (arrayRowsLength < 1) throw new Error("Невірна кількість клітинок масиву");
+
+		const arrayColumnsLength = parseInt(prompt("Введіть кількість стовпців у масиві", "6"));
+		if (arrayColumnsLength < 1) throw new Error("Невірна кількість клітинок масиву");
+
+		const shipsNumber = parseInt(prompt("Введіть кількість одиночних кораблів", "5"));
+		if (shipsNumber < 1 || shipsNumber > arrayRowsLength * arrayColumnsLength) throw new Error(
+			"Невірна кількість одиночних кораблів");
+
+		const userNumberOfShells = parseInt(prompt(
+			`Введіть кількість снарядів (кількість кораблів, яку потрібно потопити кораблів ${shipsNumber})`));
+		if (userNumberOfShells < shipsNumber) throw new Error("Невірна кількість снарядів");
+
+
+		const tableWithoutShips = createTableWithoutShips(arrayRowsLength, arrayColumnsLength);
+		const tableWithShips = addShipsInTable(tableWithoutShips, shipsNumber, 0, tableWithoutShips.length - 1);
+		seaBattle(tableWithShips, shipsNumber, userNumberOfShells, arrayRowsLength, arrayColumnsLength);
+	</script>
+
+</body>
+
+</html>
