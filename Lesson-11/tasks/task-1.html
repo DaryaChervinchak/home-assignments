@@ -82,7 +82,7 @@
 
 		let sumOfEvenRows = 0;
 
-		for (let rowIndex = 1; rowIndex < array.length; rowIndex += 2) {
+		for (let rowIndex = 0; rowIndex < array.length; rowIndex += 2) {
 			for (let columnIndex = 0; columnIndex < array[rowIndex].length; columnIndex++) {
 				sumOfEvenRows += array[rowIndex][columnIndex];
 			}
@@ -93,30 +93,21 @@
 		let sumOfOddColumns = 0;
 
 		for (let rowIndex = 0; rowIndex < array.length; rowIndex++) {
-			for (let columnIndex = 0; columnIndex < array[rowIndex].length; columnIndex += 2) {
+			for (let columnIndex = 1; columnIndex < array[rowIndex].length; columnIndex += 2) {
 				sumOfOddColumns += array[rowIndex][columnIndex];
 			}
 		}
 
 		//У парних рядках – непарні стовпці, у непарних – парні
 
-		let sumOfEvenRowsOddColumns = 0;
+		let sumOfEvenRowsOddColumnsAndOddRowsEvenColumns = 0;
 
-		for (let rowIndex = 1; rowIndex < array.length; rowIndex += 2) {
-			for (let columnIndex = 0; columnIndex < array[rowIndex].length; columnIndex += 2) {
-				sumOfEvenRowsOddColumns += array[rowIndex][columnIndex];
+		for (let rowIndex = 0; rowIndex < array.length; rowIndex++) {
+			for (let columnIndex = 0; columnIndex < array[rowIndex].length; columnIndex++) {
+				if ((rowIndex % 2 === 0 && columnIndex % 2 !== 0) || (rowIndex % 2 !== 0 && columnIndex % 2 === 0))
+					sumOfEvenRowsOddColumnsAndOddRowsEvenColumns += array[rowIndex][columnIndex];
 			}
 		}
-
-		let sumOfOddRowsEvenColumns = 0;
-
-		for (let rowIndex = 0; rowIndex < array.length; rowIndex += 2) {
-			for (let columnIndex = 1; columnIndex < array[rowIndex].length; columnIndex += 2) {
-				sumOfOddRowsEvenColumns += array[rowIndex][columnIndex];
-			}
-		}
-
-		let sumOfEvenRowsOddColumnsAndOddRowsEvenColumns = sumOfEvenRowsOddColumns + sumOfOddRowsEvenColumns;
 
 		document.write('<ol>');
 		document.write(
