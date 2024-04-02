@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 1</title>
+</head>
+
+<body>
+	<h1>Задача 1</h1>
+
+	<p>Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів та порівнянь чисел під час сортування
+		бульбашкою.</p>
+
+	<script>
+		function getRandomNumber(from, to) {
+			const minRandomNumber = Math.ceil(from);
+			const maxRandomNumber = Math.floor(to);
+			const randomNumber = Math.floor(Math.random() * (maxRandomNumber - minRandomNumber + 1) + minRandomNumber);
+
+			return randomNumber;
+		}
+
+		function createArrayWithRandomNumbers(from, to, countNumbers) {
+			let arrayWithRandomNumbers = [];
+			for (let i = 0; i < countNumbers; i++) {
+				arrayWithRandomNumbers.push(getRandomNumber(from, to));
+			}
+			return arrayWithRandomNumbers;
+		}
+
+		const arrayWithRandomNumbers = createArrayWithRandomNumbers(-50, 50, 30);
+
+		document.write(`Початковий масив: ${arrayWithRandomNumbers} <br>`);
+
+		function swap(array, firstIndex, secondIndex) {
+			let temp = array[firstIndex];
+			array[firstIndex] = array[secondIndex];
+			array[secondIndex] = temp;
+		}
+
+		function bubbleSort(array) {
+			let changed;
+			let numberOfComparisons = 0;
+			let numberOfExchanges = 0;
+
+			do {
+				changed = false;
+
+				for (let i = 1; i < array.length; i++) {
+					numberOfComparisons++;
+
+					if (array[i - 1] > array[i]) {
+						swap(array, i - 1, i);
+
+						changed = true;
+						numberOfExchanges++
+					}
+				}
+
+			} while (changed);
+
+			return [array, numberOfComparisons, numberOfExchanges]
+		}
+
+		const [sortedArray, numberOfComparisons, numberOfExchanges] = [...bubbleSort(arrayWithRandomNumbers)];
+
+
+		document.write(`Масив після сортування бульбашкою: ${sortedArray} <br>`);
+		document.write(`Було виконано порівнянь: ${numberOfComparisons} <br>`);
+		document.write(`Було виконано обмінів ${numberOfExchanges} <br>`);
+	</script>
+
+</body>
+
+</html>

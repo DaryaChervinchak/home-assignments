@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 4</title>
+</head>
+
+<body>
+	<h1>Задача 4</h1>
+
+	<p>Для розглянутих методів сортування спробувати вивести етапи сортування шляхом виведення відповідних таблиць за
+		зразком.</p>
+
+	<script>
+		const arrayWithNumbers = [3, 5, 1, 4, 2];
+
+		function swap(array, firstIndex, secondIndex) {
+			let temp = array[firstIndex];
+			array[firstIndex] = array[secondIndex];
+			array[secondIndex] = temp;
+		}
+
+		function bubbleSort(array) {
+			document.write(`[${array}] <br>`);
+
+			let changed;
+
+			do {
+				changed = false;
+
+				for (let i = 1; i < array.length; i++) {
+
+					if (array[i - 1] > array[i]) {
+						swap(array, i - 1, i);
+						document.write(`[${array}]<br>`)
+						changed = true;
+					}
+				}
+
+			} while (changed);
+
+			return array
+		}
+
+		function cocktailSort(array) {
+			document.write(`[${array}] <br>`);
+			let leftIndex = 0;
+			let rightIndex = array.length - 1;
+
+			while (leftIndex < rightIndex) {
+				let changed = false;
+
+				for (let i = leftIndex + 1; i < array.length; i++) {
+
+					if (array[i - 1] > array[i]) {
+						swap(array, i - 1, i);
+						changed = true;
+
+						document.write(`[${array}]<br>`)
+					}
+				}
+
+				rightIndex--;
+
+				if (!changed) break;
+
+				changed = false;
+
+				for (let i = rightIndex; i > leftIndex; i--) {
+
+					if (array[i - 1] > array[i]) {
+						swap(array, i - 1, i);
+
+						changed = true;
+
+						document.write(`[${array}]<br>`)
+					}
+				}
+				leftIndex++;
+
+				if (!changed) break;
+			}
+
+			return array;
+		}
+
+		function insertSort(array) {
+			document.write(`[${array}] <br>`);
+
+			for (let k = 1; k < array.length; k++) {
+				const currentElement = array[k];
+				let i = k - 1;
+
+
+				while (i >= 0 && array[i] > currentElement) {
+					array[i + 1] = array[i];
+					i = i - 1;
+					document.write(`[${array}]<br>`)
+				}
+				array[i + 1] = currentElement;
+				document.write(`[${array}]<br>`)
+			}
+
+
+			return array
+		}
+
+		document.write(`Сортування бульбашкою:<br>`);
+		bubbleSort([...arrayWithNumbers]);
+		document.write(`<hr>`);
+
+		document.write(`Сортування змішуванням:<br>`);
+		cocktailSort([...arrayWithNumbers]);
+		document.write(`<hr>`);
+
+		document.write(`Сортування включеннями:<br>`);
+		insertSort([...arrayWithNumbers]);
+	</script>
+
+</body>
+
+</html>
