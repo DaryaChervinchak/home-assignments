@@ -91,21 +91,15 @@
 
 		//Максимальний прибуток за середу
 
-		let profitsStoresForWednesday = [];
+
+		const wednesdayIndex = 2;
+		let maxProfitForWednesday = -Infinity;
 
 		for (let storeIndex = 0; storeIndex < profits.length; storeIndex++) {
-			for (let dayIndex = 0; dayIndex < profits[storeIndex].length; dayIndex++) {
-				if (dayIndex === 2) {
-					profitsStoresForWednesday.push(profits[storeIndex][dayIndex]);
-				}
-			}
+			if (profits[storeIndex][wednesdayIndex] > maxProfitForWednesday) maxProfitForWednesday = profits[storeIndex][
+				wednesdayIndex
+			];
 		}
-
-		const maxProfitForWednesday = profitsStoresForWednesday.reduce((prevMaxProfit, profit) => profit > prevMaxProfit ?
-			prevMaxProfit = profit : prevMaxProfit);
-
-		// або
-		//const maxProfitForWednesday = Math.max(...profitsStoresForWednesday);
 
 		document.write(`<p>Максимальний прибуток за середу: ${maxProfitForWednesday}</p>`);
 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 2</title>
+</head>
+
+<body>
+	<h1>Задача 2</h1>
+
+	<p> Розробити функцію, у яку передають об’єкт (день, місяць, рік). Визначити, який буде рік через N місяців.
+	</p>
+	<script>
+		function getYearAfterNMonths({
+			month,
+			year
+		}, nMonths) {
+			const totalMonths = month - 1 + nMonths;
+			const yearAfterNMonths = year + Math.floor(totalMonths / 12);
+			return yearAfterNMonths;
+		}
+
+		const nMonths = parseInt(prompt('Введіть кількість місяців', 0));
+
+		const object = {
+			day: 20,
+			month: 6,
+			year: 2024
+		};
+
+		const yearAfterNMonths = getYearAfterNMonths(object, nMonths);
+
+		document.write(`Зараз ${object.month} місяць ${object.year} рік <br>`);
+		document.write(`Через ${nMonths} місяців буде ${yearAfterNMonths} рік `);
+	</script>
+
+</body>
+
+</html>

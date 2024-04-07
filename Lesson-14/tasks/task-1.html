@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 1</title>
+</head>
+
+<body>
+	<h1>Задача 1</h1>
+
+	<p>Описати масив об’єктів – сайтів розроблених компанією з такими властивостями:
+		<ul>
+			<li>назва компанії на час розробки (назву періодично змінюють)</li>
+			<li>власник компанії</li>
+			<li>спонсори (масив спонсорів)
+				<ul>
+					<li>прізвище спонсора</li>
+					<li>ім’я спонсора</li>
+					<li>сума вкладень спонсора</li>
+				</ul>
+			</li>
+			<li>рік випуску</li>
+			<li>вартість сайту</li>
+		</ul>
+	</p>
+	<p>
+		Знайти:
+		<ol>
+			<li>Загальну вартість усіх сайтів.</li>
+			<li>Кількість сайтів, що було зроблено між 2000 та 2009 рр.</li>
+			<li>Кількість сайтів, де сума спонсорських вкладень була більшою за 100000.</li>
+			<li>Створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив).
+			</li>
+			<li>Знайти рік, коли прибуток був найбільшим.</li>
+			<li>Упорядкувати список за спаданням прибутку.</li>
+			<li>Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000.
+			</li>
+		</ol>
+	</p>
+
+	<script>
+		const arrayOfSites = [{
+				companyNameOfDevelopment: "ABC Inc.",
+				ownerCompany: "John Doe",
+				sponsors: [{
+						lastName: "Smith",
+						firstName: "Alice",
+						investmentAmount: 1000
+					},
+					{
+						lastName: "Johnson",
+						firstName: "Bob",
+						investmentAmount: 4000
+					}
+				],
+				yearReleased: 2021,
+				websiteCost: 5000
+			},
+			{
+				companyNameOfDevelopment: "XYZ Corp.",
+				ownerCompany: "Jane Smith",
+				sponsors: [{
+					lastName: "Williams",
+					firstName: "Charlie",
+					investmentAmount: 6000
+				}],
+				yearReleased: 2019,
+				websiteCost: 12000
+			},
+			{
+				companyNameOfDevelopment: "123 Ltd.",
+				ownerCompany: "Sarah Johnson",
+				sponsors: [{
+					lastName: "Garcia",
+					firstName: "Emma",
+					investmentAmount: 36000
+				}, {
+					lastName: "Martinez",
+					firstName: "Frank",
+					investmentAmount: 150000
+				}],
+				yearReleased: 2005,
+				websiteCost: 260000
+			},
+			{
+				companyNameOfDevelopment: "Tech Innovations",
+				ownerCompany: "Michael Brown",
+				sponsors: [{
+					lastName: "Nguyen",
+					firstName: "Huyen",
+					investmentAmount: 4000
+				}, {
+					lastName: "Tran",
+					firstName: "Linh",
+					investmentAmount: 3000
+				}],
+				yearReleased: 2010,
+				websiteCost: 13000
+			},
+		]
+
+		//Загальну вартість усіх сайтів
+
+		const totalCostOfAllSites = arrayOfSites.reduce((prevTotalCost, site) =>
+			prevTotalCost + site.websiteCost, 0
+		);
+
+		document.write(`Загальну вартість усіх сайтів: ${totalCostOfAllSites} <br>`);
+
+		//Кількість сайтів, що було зроблено між 2000 та 2009 рр.
+
+		const numberOfSitesMadeBetween2000And2009 = arrayOfSites.reduce((prevNumberOfSites, site) => site.yearReleased >
+			2000 && site.yearReleased < 2009 ? prevNumberOfSites + 1 : prevNumberOfSites, 0);
+
+		document.write(
+			`Кількість сайтів, що було зроблено між 2000 та 2009 рр.: ${numberOfSitesMadeBetween2000And2009} <br>`);
+
+		//Кількість сайтів, де сума спонсорських вкладень була більшою за 100000
+
+		const numberOfSitesWhereInvestmentAmountMoreThan100000 = arrayOfSites.reduce((prevNumberOfSites, site) => {
+			return site.sponsors.reduce((prevSumOfInvestmentAmount, sponsor) =>
+				prevSumOfInvestmentAmount + sponsor.investmentAmount, 0
+			) > 100000 ? prevNumberOfSites + 1 : prevNumberOfSites
+		}, 0)
+
+		document.write(
+			`Кількість сайтів, де сума спонсорських вкладень була більшою за 100000: ${numberOfSitesWhereInvestmentAmountMoreThan100000} <br>`
+		);
+
+		//Створити загальний список усіх спонсорів
+
+		let arraySponsors = [];
+
+		for (const site of arrayOfSites) {
+			for (const sponsor of site.sponsors) {
+				arraySponsors.push(`${sponsor.lastName} ${sponsor.firstName}`)
+			}
+		}
+		document.write(
+			`Створити загальний список усіх спонсорів: ${arraySponsors} <br>`
+		);
+
+		//Знайти рік, коли прибуток був найбільшим
+
+		let yearWhenWebsiteCostWasGreatest = 0;
+		let maxWebsiteCost = -Infinity;
+
+		for (const site of arrayOfSites) {
+			if (site.websiteCost > maxWebsiteCost) {
+				maxWebsiteCost = site.websiteCost;
+				yearWhenWebsiteCostWasGreatest = site.yearReleased;
+			}
+		}
+		document.write(
+			`Знайти рік, коли прибуток був найбільшим: ${yearWhenWebsiteCostWasGreatest}<br> Пункти 6,7 в консолі`
+		);
+
+		//Упорядкувати список за спаданням прибутку
+
+		const arrayWithMaxWebsiteCost = arrayOfSites.map(site => site.websiteCost);
+
+		for (let indexSite = 0; indexSite < arrayOfSites.length - 1; indexSite++) {
+			let maxIndexSite = indexSite;
+			for (let i = indexSite + 1; i < arrayOfSites.length; i++) {
+				if (arrayWithMaxWebsiteCost[maxIndexSite] < arrayWithMaxWebsiteCost[i])
+					maxIndexSite = i;
+			}
+			if (maxIndexSite !== indexSite) {
+				let tempMax = arrayWithMaxWebsiteCost[indexSite];
+				arrayWithMaxWebsiteCost[indexSite] = arrayWithMaxWebsiteCost[maxIndexSite];
+				arrayWithMaxWebsiteCost[maxIndexSite] = tempMax;
+
+				let temp = arrayOfSites[indexSite];
+				arrayOfSites[indexSite] = arrayOfSites[maxIndexSite];
+				arrayOfSites[maxIndexSite] = temp;
+			}
+		}
+		console.log('Упорядкувати список за спаданням прибутку:');
+		console.log(arrayOfSites);
+
+		//Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000
+
+		const arrayOfSitesWhereWebsiteCostUpTo10000 = JSON.parse(JSON.stringify(arrayOfSites)).filter(site => site
+			.websiteCost < 10000);
+
+		console.log('Копія об’єктів, що містять сайти з вартістю до 10000:')
+		console.log(arrayOfSitesWhereWebsiteCostUpTo10000)
+
+		const arrayOfSitesWhereWebsiteCostMoreThan10000 = JSON.parse(JSON.stringify(arrayOfSites)).filter(site => site
+			.websiteCost > 10000);
+
+		console.log('Копія об’єктів, що містять сайти з вартістю більше 10000:')
+		console.log(arrayOfSitesWhereWebsiteCostMoreThan10000);
+	</script>
+
+</body>
+
+</html>
