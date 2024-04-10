@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 7</title>
+</head>
+
+<body>
+	<h1>Задача 7</h1>
+	<p>Тренажер додавання. Кожні 10 секунд користувачу задають випадковий приклад з додавання двох цифр і робиться
+		перевірка.
+	</p>
+
+	<script>
+		function getRandomNumber(from, to) {
+			const minRandomNumber = Math.ceil(from);
+			const maxRandomNumber = Math.floor(to);
+			const randomNumber = Math.floor(Math.random() * (maxRandomNumber - minRandomNumber + 1) + minRandomNumber);
+
+			return randomNumber;
+		}
+
+		setInterval(() => {
+			const numberOne = getRandomNumber(-50, 50);
+			const numberTwo = getRandomNumber(-50, 50);
+			const result = numberOne + numberTwo;
+			const userResult = parseInt(prompt(`${numberOne} + ${numberTwo} =`, "0"));
+			if (result === userResult) alert('Відповідь вірна')
+			else alert('Відповідь невірна')
+		}, 10000);
+	</script>
+</body>
+
+</html>

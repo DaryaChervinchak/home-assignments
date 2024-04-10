@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 2</title>
+</head>
+
+<body>
+	<h1>Задача 2</h1>
+	<p>Дано масив імен спортсменів. Розробити програму для виведення усіх можливих результатів змагань (списки імен у
+		відповідності до місць, які вони займуть).
+	</p>
+
+	<script>
+		const arrayNames = ['Іван', 'Марта', 'Олександр'];
+
+		function showPermutationsOfAthletes(array) {
+			array.forEach(permutations => {
+				document.write(`${permutations} `);
+			});
+			document.write('<hr>')
+		}
+
+		function permutationsOfAthletes(arrayNames, position) {
+			if (position === arrayNames.length - 1) {
+				showPermutationsOfAthletes(arrayNames);
+			} else {
+				for (let i = position; i < arrayNames.length; i++) {
+					const temp = arrayNames[position];
+					arrayNames[position] = arrayNames[i];
+					arrayNames[i] = temp;
+
+					permutationsOfAthletes(arrayNames, position + 1);
+
+					arrayNames[i] = arrayNames[position];
+					arrayNames[position] = temp;
+				}
+			}
+		}
+
+		permutationsOfAthletes(arrayNames, 0);
+	</script>
+</body>
+
+</html>
