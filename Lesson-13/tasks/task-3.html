@@ -88,10 +88,10 @@
 		showTable(tableWithCrossAndZero);
 
 		function showTable(table) {
-			document.write('<table border="2px"');
+			document.write('<table border="2px">');
 
 			table.forEach(array => {
-				document.write(`</tr>`);
+				document.write(`<tr>`);
 				array.forEach(element => {
 					document.write(`<td>${element}</td>`)
 				})
