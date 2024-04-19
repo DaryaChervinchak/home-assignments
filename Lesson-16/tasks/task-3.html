@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 3</title>
+</head>
+
+<body>
+	<h1>Задача 3</h1>
+	<p>Об’єкт “Фірма” (використати члени-класи).
+		<table border="2px">
+			<tr>
+				<td rowspan="4">Поля</td>
+				<td>Назва фірми</td>
+			</tr>
+			<tr>
+				<td>Дата заснування (рік, місяць)</td>
+			</tr>
+			<tr>
+				<td>Послуги (назва послуги, вартість, термін виконання)</td>
+			</tr>
+			<tr>
+				<td>Адреси філіалів (країна, місто, вулиця, номер будинку)</td>
+			</tr>
+			<tr>
+				<td rowspan="3">Методи</td>
+				<td>Визначення кількості років існування фірми</td>
+			</tr>
+			<tr>
+				<td>Виведення всіх філіалів фірми у вказаному місті</td>
+			</tr>
+			<tr>
+				<td>Виведення на екран послуг, що можуть бути виконані за вказану суму грошей та вказаний термін часу
+				</td>
+			</tr>
+		</table>
+	</p>
+
+	<script>
+		"use strict";
+
+		class Services {
+			#title
+
+			get Title() {
+				return this.#title;
+			}
+
+			set Title(value) {
+				if (value.length === 0) throw new Error('Укажіть назву послуги');
+				this.#title = value;
+			}
+
+			#cost
+
+			get Cost() {
+				return this.#cost;
+			}
+
+			set Cost(value) {
+				if (value <= 0) throw new Error('Невірно вказана вартість послуги');
+				this.#cost = value;
+			}
+
+			#deadline
+
+			get Deadline() {
+				return this.#deadline;
+			}
+
+			set Deadline(value) {
+				if (value.length === 0) throw new Error('Укажіть термін виконання');
+				this.#deadline = value;
+			}
+
+			constructor({
+				title,
+				cost,
+				deadline
+			}) {
+				this.Title = title;
+				this.Cost = cost;
+				this.Deadline = deadline;
+			}
+
+			toString() {
+				return this.Title
+			}
+		}
+
+		class AddressBranches {
+			#country
+
+			get Country() {
+				return this.#country;
+			}
+
+			set Country(value) {
+				if (value.length === 0) throw new Error('Укажіть назву країни');
+				this.#country = value;
+			}
+
+			#city
+
+			get City() {
+				return this.#city;
+			}
+
+			set City(value) {
+				if (value.length === 0) throw new Error('Укажіть назву міста');
+				this.#city = value;
+			}
+
+			#street
+
+			get Street() {
+				return this.#street;
+			}
+
+			set Street(value) {
+				if (value.length === 0) throw new Error('Укажіть назву вулиці');
+				this.#street = value;
+			}
+
+			#houseNumber
+
+			get HouseNumber() {
+				return this.#houseNumber;
+			}
+
+			set HouseNumber(value) {
+				if (value <= 0) throw new Error('Невірно вказаний номер будинку');
+				this.#houseNumber = value;
+			}
+
+			constructor({
+				country,
+				city,
+				street,
+				houseNumber
+			}) {
+				this.Country = country;
+				this.City = city;
+				this.Street = street;
+				this.HouseNumber = houseNumber;
+			}
+
+			toString() {
+				return `${this.Country}, ${this.City}, ${this.Street}, ${this.HouseNumber}
+				`
+			}
+		}
+
+		class Firm {
+			#title
+
+			get Title() {
+				return this.#title;
+			}
+
+			set Title(value) {
+				if (value.length === 0) throw new Error('Укажіть назву фірми');
+				this.#title = value;
+			}
+
+			#dateOfEstablishment
+
+			get DateOfEstablishment() {
+				return this.#dateOfEstablishment;
+			}
+
+			set DateOfEstablishment(value) {
+				if (value.year <= 0 || value.month <= 0) throw new Error('Невірно вказана дата заснування');
+				this.#dateOfEstablishment = value;
+			}
+
+			constructor({
+				title,
+				dateOfEstablishment,
+				services,
+				address
+			}) {
+				this.Title = title;
+				this.DateOfEstablishment = dateOfEstablishment;
+				this.services = services;
+				this.address = address;
+			}
+			getNumberOfYearsExistenceFirm() {
+				return new Date().getFullYear() - this.DateOfEstablishment.year;
+			}
+
+			getAllBranchesInCity(city) {
+				const arrayOfAllBranchesInCity = this.address.filter(address => address.City === city);
+				return arrayOfAllBranchesInCity;
+			}
+
+			getAllServicesForSpecifiedAmountAndTime(amount, time) {
+				const arrayOfAllServicesForSpecifiedAmountAndTime = this.services.filter(service =>
+					service.Cost <= amount && parseFloat(service.Deadline) <= parseFloat(time));
+				return arrayOfAllServicesForSpecifiedAmountAndTime;
+			}
+
+			toString() {
+				return `Назва фірми: ${this.Title} <br>
+				Дата заснування: ${this.DateOfEstablishment.month}.${this.DateOfEstablishment.year} <br>
+				Послуги: ${this.services} <br>
+				Адреси філіалів: ${this.address} <br>
+				`
+			}
+		}
+
+		const services = [
+			new Services({
+				title: 'Прибирання',
+				cost: 450,
+				deadline: '1 година'
+			}), new Services({
+				title: 'Ремонт сантехніки',
+				cost: 500,
+				deadline: '2 години'
+			}),
+			new Services({
+				title: 'Догляд за домашніми тваринами',
+				cost: 900,
+				deadline: '3 години'
+			})
+		]
+
+		const address = [
+			new AddressBranches({
+				country: 'Україна',
+				city: 'Київ',
+				street: 'Велика Васильківська',
+				houseNumber: 10
+			}), new AddressBranches({
+				country: 'Німеччина',
+				city: 'Берлін',
+				street: 'Фрідріхштрассе',
+				houseNumber: 25
+			}),
+			new AddressBranches({
+				country: 'Франція',
+				city: 'Париж',
+				street: 'Шанз-Елізе',
+				houseNumber: 17
+			}), new AddressBranches({
+				country: 'Італія',
+				city: 'Рим',
+				street: 'Віа дель Корсо',
+				houseNumber: 43
+			})
+		]
+
+		const firstFirm = new Firm({
+			title: 'CleanUp Crew',
+			dateOfEstablishment: {
+				year: 2020,
+				month: 4,
+			},
+			services: services,
+			address: address
+		})
+
+		const city = 'Рим';
+		const amount = 750;
+		const time = '2 години';
+		document.write(firstFirm);
+		document.write('<hr>')
+		document.write(`Кількості років існування фірми: ${firstFirm.getNumberOfYearsExistenceFirm()} <br>`);
+
+		if (firstFirm.getAllBranchesInCity(city).length) {
+			document.write(`Всі філіали фірми у місті ${city}: ${firstFirm.getAllBranchesInCity(city)}  <br>`);
+		} else document.write(` У місті ${city} немає філіалів фірми <br>`);
+
+		if (firstFirm.getAllServicesForSpecifiedAmountAndTime(amount, time).length) {
+			document.write(
+				`Всі послуги, що можуть бути виконані за суму ${amount} та за термін часу ${time}: ${firstFirm.getAllServicesForSpecifiedAmountAndTime(amount,  time)}  <br>`
+				);
+		} else document.write(`За вказану суму та вказаний час немає можливості надати послугу.`);
+	</script>
+</body>
+
+</html>
