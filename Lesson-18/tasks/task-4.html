@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 4</title>
+</head>
+
+<body>
+	<h1>Задача 4</h1>
+	<p>Наперед задано у скрипті масив зі списком бажань. Після завантаження сторінки випадковим чином вибираються 3
+		і відображаються у окремих div (їх треба створити і додати на сторінку).</p>
+	<div class="wish"></div>
+
+	<script>
+		"use strict";
+
+		function getRandomNumber(from, to) {
+			const minNumber = Math.ceil(from);
+			const maxNumber = Math.floor(to);
+			const randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
+
+			return randomNumber;
+		}
+
+		function showWishList(countOfWish) {
+			const wishElement = document.querySelector('.wish');
+
+			const listOfWishes = [
+				"Здоров'я",
+				"Щастя",
+				"Любов",
+				"Мир",
+				"Успіх",
+				"Довголіття",
+				"Дружба",
+				"Подорожі",
+				"Навчання",
+				"Кар'єра"
+			];
+
+			for (let i = 0; i < countOfWish; i++) {
+				const divElement = document.createElement('div');
+				divElement.innerText = listOfWishes[getRandomNumber(0, listOfWishes.length - 1)];
+				wishElement.append(divElement);
+			}
+
+		}
+
+		window.onload = function () {
+			showWishList(3);
+		};
+	</script>
+</body>
+
+</html>
