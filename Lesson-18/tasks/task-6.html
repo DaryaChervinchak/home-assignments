@@ -74,7 +74,7 @@
 
 			for (const gradeElement of gradeElements) {
 				const gradeElementValue = parseInt(gradeElement.value);
-				if (isNaN(gradeElementValue)) throw new Error('Некоректне значення');
+				if (isNaN(gradeElementValue) || gradeElementValue > 12) throw new Error('Некоректне значення');
 				sum += gradeElementValue;
 			}
 
