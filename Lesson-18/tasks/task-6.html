@@ -60,7 +60,7 @@
 			return tableElement;
 		}
 
-		function createButton(textButton) {
+		function getCreateButton(textButton) {
 			const buttonElement = document.createElement('button');
 			buttonElement.setAttribute('type', 'button');
 			buttonElement.setAttribute('id', 'averageValue')
@@ -87,7 +87,7 @@
 
 		function showTable() {
 			const table = getCreateTable();
-			const button = createButton('Середнє значення');
+			const button = getCreateButton('Середнє значення');
 			document.querySelector(".table").append(table);
 			document.querySelector(".table").append(button);
 			document.querySelector(`#${button.id}`).onclick = showAverageValue;
