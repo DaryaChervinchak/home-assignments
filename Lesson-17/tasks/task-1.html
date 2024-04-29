@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 1</title>
+</head>
+
+<body>
+	<h1>Задача 1</h1>
+	<p>Створити клас, що дозволяє виконувати такі операції над масивами: знаходження кількості додатних, кількості
+		від’ємних, кількість входжень деякого числа (статичні методи).</p>
+
+	<script>
+		"use strict";
+
+		class ArrayOperations {
+
+			static getNumberOfPositiveElements(array) {
+				return array.reduce((prevNumberOfPositiveElements, element) =>
+					element > 0 ? prevNumberOfPositiveElements + 1 : prevNumberOfPositiveElements, 0
+				);
+			}
+
+			static getNumberOfNegativeElements(array) {
+				return array.reduce((prevNumberOfNegativeElements, element) =>
+					element < 0 ? prevNumberOfNegativeElements + 1 : prevNumberOfNegativeElements, 0
+				);
+			}
+
+			static getNumberOfEnteringSomeNumberInArray(array, number) {
+				return array.reduce((numberOfEnteringSomeNumberInArray, element) =>
+					element === number ? numberOfEnteringSomeNumberInArray + 1 : numberOfEnteringSomeNumberInArray, 0
+				);
+			}
+
+		}
+		const firstArray = [2, -1, 10, -5, 15, 7, -35, -3, -1];
+		const firstNumber = -1;
+		const secondArray = [24, -9, 31, -3];
+
+		document.write(`Перший масив: ${firstArray} <br>`);
+		document.write(
+			`Кількость додатних чисел у першому масиві: ${ArrayOperations.getNumberOfPositiveElements(firstArray)} <br>`);
+		document.write(
+			`Кількость від’ємних чисел у першому масиві: ${ArrayOperations.getNumberOfNegativeElements(firstArray)} <br>`);
+		document.write(
+			`Кількість входжень числа ${firstNumber} у першому масиві: ${ArrayOperations.getNumberOfEnteringSomeNumberInArray(firstArray, firstNumber)} <hr>`
+		);
+
+		document.write(`Другий масив: ${secondArray} <br>`);
+		document.write(
+			`Кількость додатних чисел у другому масиві: ${ArrayOperations.getNumberOfPositiveElements(secondArray)} <br>`);
+		document.write(
+			`Кількость від’ємних чисел у другому масиві: ${ArrayOperations.getNumberOfNegativeElements(secondArray)} <br>`);
+		document.write(
+			`Кількість входжень числа ${firstNumber} у другому масиві: ${ArrayOperations.getNumberOfEnteringSomeNumberInArray(secondArray, firstNumber)} <br>`
+		);
+	</script>
+</body>
+
+</html>

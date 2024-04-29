@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 5</title>
+</head>
+
+<body>
+	<h1>Задача 5</h1>
+	<p> Особиста бібліотека. Картотека домашньої бібліотеки: дані книги (автори (піб, рік народження, короткий опис),
+		назва книги, жанр, видавництво (назва, реєстраційний номер, рік засування)). Реалізувати розділи бібліотеки
+		(спеціальна література, хобі, домашнє господарство і т.д.), походження книги і наявність на даний час.
+		Організувати додавання/вилучення книг та вибір книг за назвою, за ПІБ автора, за видавництвом.</p>
+
+	<script>
+		"use strict";
+
+		class Author {
+			#name
+
+			get Name() {
+				return this.#name;
+			}
+
+			set Name(value) {
+				if (value.length === 0) throw new Error('Введіть піб автора')
+				this.#name = value;
+			}
+
+			#yearOfBirth
+
+			get YearOfBirth() {
+				return this.#yearOfBirth;
+			}
+
+			set YearOfBirth(value) {
+				if (value <= 0 || value > new Date().getFullYear()) throw new Error(
+					'Некоректне значення року народження автора')
+				this.#yearOfBirth = value;
+			}
+
+			#description
+
+			get Description() {
+				return this.#description;
+			}
+
+			set Description(value) {
+				if (value.length === 0) throw new Error('Введіть короткий опис')
+				this.#description = value;
+			}
+
+			constructor(name, yearOfBirth, description) {
+				this.Name = name;
+				this.YearOfBirth = yearOfBirth;
+				this.Description = description;
+			}
+			toString() {
+				return `ПІБ автора: ${this.Name} <br>
+				Рік народження: ${this.YearOfBirth} <br>
+				Короткий опис: ${this.Description} <br>
+				`
+			}
+		}
+
+		class PublishingHouse {
+
+			#nameOfPublisher
+
+			get NameOfPublisher() {
+				return this.#nameOfPublisher;
+			}
+
+			set NameOfPublisher(value) {
+				if (value.length === 0) throw new Error('Введіть назву видавництва')
+				this.#nameOfPublisher = value;
+			}
+
+			#registrationNumber
+
+			get RegistrationNumber() {
+				return this.#registrationNumber;
+			}
+
+			set RegistrationNumber(value) {
+				if (value.length === 0) throw new Error('Введіть реєстраційний номер')
+				this.#registrationNumber = value;
+			}
+
+			#yearOfFoundation
+
+			get YearOfFoundation() {
+				return this.#yearOfFoundation;
+			}
+
+			set YearOfFoundation(value) {
+				if (value <= 0 || value > new Date().getFullYear()) throw new Error(
+					'Некоректне значення року заснування')
+				this.#yearOfFoundation = value;
+			}
+
+			constructor(nameOfPublisher, registrationNumber, yearOfFoundation) {
+				this.NameOfPublisher = nameOfPublisher;
+				this.RegistrationNumber = registrationNumber;
+				this.YearOfFoundation = yearOfFoundation;
+			}
+			toString() {
+				return `Назва: ${this.NameOfPublisher} <br>
+				Реєстраційний номер: ${this.RegistrationNumber} <br>
+				Рік засування: ${this.YearOfFoundation} <br>
+				`
+			}
+		}
+
+		class Book {
+			#authors
+
+			get Authors() {
+				return this.#authors;
+			}
+
+			set Authors(value) {
+				if (!Array.isArray(value)) throw new Error('Укажіть масив');
+				this.#authors = value;
+			}
+
+			#title
+
+			get Title() {
+				return this.#title;
+			}
+
+			set Title(value) {
+				if (value.length === 0) throw new Error('Введіть назву книги')
+				this.#title = value;
+			}
+
+			#genres
+
+			get Genres() {
+				return this.#genres;
+			}
+
+			set Genres(value) {
+				if (!Array.isArray(value)) throw new Error('Укажіть масив');
+				this.#genres = value;
+			}
+
+			#originOfBook
+
+			get OriginOfBook() {
+				return this.#originOfBook;
+			}
+
+			set OriginOfBook(value) {
+				if (value.length === 0) throw new Error('Введіть походження книги')
+				this.#originOfBook = value;
+			}
+
+			#availability
+
+			get Availability() {
+				return this.#availability;
+			}
+
+			set Availability(value) {
+				if (typeof (value) !== 'boolean') throw new Error('Введіть значення типу Boolean')
+				this.#availability = value;
+			}
+
+			constructor(authors, title, genres, publishingHouse, originOfBook, availability) {
+				this.Authors = authors;
+				this.Title = title;
+				this.Genres = genres;
+				this.publishingHouse = publishingHouse;
+				this.OriginOfBook = originOfBook;
+				this.Availability = availability;
+			}
+
+			toString() {
+				return `Автори: ${this.Authors} <br>
+					Назва книги: ${this.Title} <br>
+					Жанр: ${this.Genres} <br>
+					Видавництво: ${this.publishingHouse} <br>
+					Походження книги: ${this.OriginOfBook} <br>
+					Наявність на даний час: ${this.Availability}<br>
+				`
+			}
+		}
+
+		class LibrarySection {
+			#name
+
+			get Name() {
+				return this.#name;
+			}
+
+			set Name(value) {
+				if (value.length === 0) throw new Error('Введіть розділ бібліотеки')
+				this.#name = value;
+			}
+			constructor(name) {
+				this.Name = name;
+				this.books = [];
+			}
+
+			toString() {
+				return `Розділ бібліотеки: ${this.Name} <br>
+					Книги: ${this.Title} <br>
+					Жанр: ${this.books} <br>
+				`
+			}
+		}
+
+		class Library {
+			constructor(librarySections) {
+				this.librarySections = librarySections;
+			}
+			changeAvailabilityOfBook(titleOfBook, availabilityValue) {
+				this.librarySections.forEach(librarySection => {
+					librarySection.books.forEach(book => {
+						if (book.Title === titleOfBook) {
+							book.Availability = availabilityValue;
+						}
+					});
+				});
+
+			}
+
+			addBook(book) {
+				let librarySectionsList = 'Секції бібліотеки: \n';
+
+				this.librarySections.forEach((librarySection, index) => {
+					librarySectionsList += `${index + 1} - ${librarySection.Name} \n`
+				});
+
+				const librarySectionForBook = parseInt(prompt(`Виберіть секцію, в яку додати книгу "${book.Title}".
+				${librarySectionsList} `, '1'));
+				if (librarySectionForBook <= 0 || librarySectionForBook > this.librarySections.length || isNaN(
+						librarySectionForBook)) throw new Error('Невірно вибрана секція');
+				this.librarySections[librarySectionForBook - 1].books.push(book);
+
+			}
+			removeBook(bookTitleToRemove) {
+				this.librarySections.forEach(librarySection => {
+					librarySection.books = librarySection.books.filter(book =>
+						book.Title !== bookTitleToRemove
+					)
+				});
+			}
+
+			getFilterBooksByTitleOfBook(titleOfBook) {
+				let filterBooksByTitleOfBook = [];
+				this.librarySections.forEach(librarySection => {
+					librarySection.books.forEach(book => {
+						if (book.Title === titleOfBook && book.Availability === true) {
+							filterBooksByTitleOfBook.push(book);
+						}
+					})
+				});
+				return filterBooksByTitleOfBook;
+			}
+
+			getFilterBooksByNameOfAuthor(nameOfAuthor) {
+				let filterBooksByNameOfAuthor = [];
+				this.librarySections.forEach(librarySection => {
+					librarySection.books.forEach(book => {
+						book.Authors.forEach(author => {
+							if (author.Name === nameOfAuthor && book.Availability === true) {
+								filterBooksByNameOfAuthor.push(book);
+							}
+						})
+					})
+				});
+				return filterBooksByNameOfAuthor;
+			}
+
+			getFilterBooksByNameOfPublisher(nameOfPublisher) {
+				let filterBooksByNameOfPublisher = [];
+				this.librarySections.forEach(librarySection => {
+					librarySection.books.forEach(book => {
+						if (book.publishingHouse.NameOfPublisher === nameOfPublisher) {
+							filterBooksByNameOfPublisher.push(book);
+						}
+					})
+				});
+				return filterBooksByNameOfPublisher;
+			}
+		}
+
+		const firstAuthor = new Author('Джоан Кэтлин Роулинг', 1965,
+			'Британський автор, найбільш відома як автор серії романів про Гаррі Поттера');
+		const secondAuthor = new Author('Тарас Григорович Шевченко', 1814, 'Український поет, прозаїк, мислитель, художник');
+		const thirdAuthor = new Author('Стівен Едвін Кінг', 1947, 'Американський письменник, автор понад 200 творів');
+
+		const firstPublishingHouse = new PublishingHouse('Bloomsbury Publishing', '1234', 1986);
+		const secondPublishingHouse = new PublishingHouse('А-БА-БА-ГА-ЛА-МА-ГА', '5674', 1992);
+		const thirdPublishingHouse = new PublishingHouse('Клуб сімейного дозвілля', '8452', 2015);
+
+		const firstBook = new Book([firstAuthor], 'Гаррі Поттер і філософський камінь', ['Роман', 'Фантастика'],
+			firstPublishingHouse, 'Куплена', true);
+		const secondBook = new Book([secondAuthor], 'Кобзар', ['Поезія'], secondPublishingHouse, 'Подарована', true);
+		const thirdBook = new Book([thirdAuthor], 'Мізері', ['Роман'], thirdPublishingHouse, 'Подарована', true);
+
+		const fantasy = new LibrarySection('Фантастика');
+		const ukrainianClassics = new LibrarySection('Українська класика');
+
+		const library = new Library([fantasy, ukrainianClassics]);
+
+		library.addBook(firstBook);
+		library.addBook(secondBook);
+		library.addBook(thirdBook);
+		library.removeBook(firstBook.Title);
+
+		const filterBooksByTitleOfBook = library.getFilterBooksByTitleOfBook(thirdBook.Title);
+		document.write(`<strong>Ви шукали книгу "${thirdBook.Title}"</strong> <br> <br>`)
+		if (filterBooksByTitleOfBook.length) {
+			document.write(`${filterBooksByTitleOfBook} <br>`)
+		} else {
+			document.write(`Книги "${thirdBook.Title}" немає в бібліотеці <br>`)
+		}
+
+		const filterBooksByNameOfAuthor = library.getFilterBooksByNameOfAuthor(secondAuthor.Name);
+		document.write(`<strong>Ви шукали книги автора ${secondAuthor.Name}</strong> <br> <br>`)
+		if (filterBooksByNameOfAuthor.length) {
+			document.write(`${filterBooksByNameOfAuthor} <br>`)
+		} else {
+			document.write(`Книг автора ${secondAuthor.Name} немає в бібліотеці <br>`)
+		}
+
+		const filterBooksByNameOfPublisher = library.getFilterBooksByNameOfPublisher(firstPublishingHouse.NameOfPublisher);
+		document.write(`<strong> Ви шукали книги видавництва "${firstPublishingHouse.NameOfPublisher}"</strong> <br> <br>`)
+		if (filterBooksByNameOfPublisher.length) {
+			document.write(`${filterBooksByNameOfPublisher} <br>`)
+		} else {
+			document.write(`Книг видавництва "${firstPublishingHouse.NameOfPublisher}" немає в бібліотеці <br>`)
+		}
+
+		library.changeAvailabilityOfBook(secondBook.Title, false);
+	</script>
+</body>
+
+</html>

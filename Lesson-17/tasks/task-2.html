@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 2</title>
+</head>
+
+<body>
+	<h1>Задача 2</h1>
+	<p> Створити службове авто (водій, марка, номер). Створити клас таким чином, щоб можна було створити тільки
+		один екземпляр цього класу.</p>
+
+	<script>
+		"use strict";
+
+		class CompanyCar {
+			static companyCarReference;
+
+			constructor(carDriver, carBrand, carNumber) {
+				if (CompanyCar.companyCarReference) return CompanyCar.companyCarReference
+
+				this.carDriver = carDriver;
+				this.carBrand = carBrand;
+				this.carNumber = carNumber;
+
+				CompanyCar.companyCarReference = this;
+			}
+
+			toString() {
+				return `
+				Водій: ${this.carDriver} <br>
+				Марка: ${this.carBrand} <br>
+				Номер: ${this.carNumber} <br>
+				`
+			}
+		}
+
+		const firstCompanyCar = new CompanyCar('Ivan', 'Mazda', 'BX 6036 BH');
+		const secondCompanyCar = new CompanyCar('Petro', 'Chevrolet', 'AC 1533 BE');
+
+		document.write(firstCompanyCar);
+		document.write('<hr>')
+		document.write(secondCompanyCar);
+	</script>
+</body>
+
+</html>
