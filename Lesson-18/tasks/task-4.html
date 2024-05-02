@@ -24,21 +24,8 @@
 			return randomNumber;
 		}
 
-		function showWishList(countOfWish) {
-			const wishElement = document.querySelector('.wish');
-
-			const listOfWishes = [
-				"Здоров'я",
-				"Щастя",
-				"Любов",
-				"Мир",
-				"Успіх",
-				"Довголіття",
-				"Дружба",
-				"Подорожі",
-				"Навчання",
-				"Кар'єра"
-			];
+		function showWishList(listOfWishes, countOfWish, selectorElement) {
+			const wishElement = document.querySelector(selectorElement);
 
 			for (let i = 0; i < countOfWish; i++) {
 				const divElement = document.createElement('div');
@@ -48,8 +35,21 @@
 
 		}
 
+		const listOfWishes = [
+			"Здоров'я",
+			"Щастя",
+			"Любов",
+			"Мир",
+			"Успіх",
+			"Довголіття",
+			"Дружба",
+			"Подорожі",
+			"Навчання",
+			"Кар'єра"
+		];
+
 		window.onload = function () {
-			showWishList(3);
+			showWishList(listOfWishes, 3, '.wish');
 		};
 	</script>
 </body>

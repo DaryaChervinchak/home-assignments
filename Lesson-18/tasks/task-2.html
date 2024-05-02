@@ -40,23 +40,26 @@
 	<script>
 		"use strict";
 
-		function currencyConverter() {
-			const EXCHANGE_RATE_EUR = 42.53;
-			const EXCHANGE_RATE_USD = 39.89;
+		function currencyConverter(exchangeEuroRate, exchangeUSDRate) {
+
 
 			const amountInUAHValue = parseFloat(document.querySelector('#uah').value);
 
 			if (isNaN(amountInUAHValue) || amountInUAHValue <= 0) throw new Error('Некоректне значення');
 
-			const amountInEUR = amountInUAHValue / EXCHANGE_RATE_EUR;
-			const amountInUSD = amountInUAHValue / EXCHANGE_RATE_USD;
+			const amountInEUR = amountInUAHValue / exchangeEuroRate;
+			const amountInUSD = amountInUAHValue / exchangeUSDRate;
 
 			document.querySelector('#eur').value = amountInEUR.toFixed(2);
 			document.querySelector('#usd').value = amountInUSD.toFixed(2);
 		}
 
 		window.onload = function () {
-			document.querySelector('#convert').onclick = currencyConverter;
+			const EXCHANGE_RATE_EUR = 42.53;
+			const EXCHANGE_RATE_USD = 39.89;
+			document.querySelector('#convert').onclick = () => {
+				currencyConverter(EXCHANGE_RATE_EUR, EXCHANGE_RATE_USD)
+			};
 		};
 	</script>
 </body>

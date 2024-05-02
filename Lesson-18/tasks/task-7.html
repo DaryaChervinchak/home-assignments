@@ -18,6 +18,7 @@
 		літак - випадаючий список), харчування (сніданок, обід, вечеря – checkbоx) та одного з 3-х гідів(використати -
 		radio buttons). Ціни визначте самі. Підрахувати загальну вартість. </p>
 	<div class="trip">
+		<h2>Перший етап</h2>
 		<fieldset>
 			<legend>Вибрати вид транспорту:</legend>
 			<select id="typesOfTransport">
@@ -50,7 +51,72 @@
 			<input type="radio" id="thirdGuide" value="700" name="guide" />
 			<label for="thirdGuide">Гід №3</label><br />
 		</fieldset>
+		<h2>Другий етап</h2>
+		<fieldset>
+			<legend>Вибрати вид транспорту:</legend>
+			<select id="typesOfTransport">
+				<option value="300">Автобус</option>
+				<option value="400">Авто</option>
+				<option value="800">Літак</option>
+			</select>
+		</fieldset>
+		<fieldset>
+			<legend>Вибрати харчування:</legend>
 
+			<input type="checkbox" id="breakfast" value="300" checked />
+			<label for="breakfast">Сніданок</label><br />
+
+			<input type="checkbox" id="lunch" value="400" />
+			<label for="lunch">Обід</label><br />
+
+			<input type="checkbox" id="вечеря" value="500" />
+			<label for="вечеря">Вечеря</label><br />
+		</fieldset>
+		<fieldset>
+			<legend>Вибрати гіда:</legend>
+
+			<input type="radio" id="firstGuide" value="500" name="guide" checked />
+			<label for="firstGuide">Гід №1</label><br />
+
+			<input type="radio" id="secondGuide" value="600" name="guide" />
+			<label for="secondGuide">Гід №2</label><br />
+
+			<input type="radio" id="thirdGuide" value="700" name="guide" />
+			<label for="thirdGuide">Гід №3</label><br />
+		</fieldset>
+		<h2>Третій етап</h2>
+		<fieldset>
+			<legend>Вибрати вид транспорту:</legend>
+			<select id="typesOfTransport">
+				<option value="300">Автобус</option>
+				<option value="400">Авто</option>
+				<option value="800">Літак</option>
+			</select>
+		</fieldset>
+		<fieldset>
+			<legend>Вибрати харчування:</legend>
+
+			<input type="checkbox" id="breakfast" value="300" checked />
+			<label for="breakfast">Сніданок</label><br />
+
+			<input type="checkbox" id="lunch" value="400" />
+			<label for="lunch">Обід</label><br />
+
+			<input type="checkbox" id="вечеря" value="500" />
+			<label for="вечеря">Вечеря</label><br />
+		</fieldset>
+		<fieldset>
+			<legend>Вибрати гіда:</legend>
+
+			<input type="radio" id="firstGuide" value="500" name="guide" checked />
+			<label for="firstGuide">Гід №1</label><br />
+
+			<input type="radio" id="secondGuide" value="600" name="guide" />
+			<label for="secondGuide">Гід №2</label><br />
+
+			<input type="radio" id="thirdGuide" value="700" name="guide" />
+			<label for="thirdGuide">Гід №3</label><br />
+		</fieldset>
 		<button type="button" id="totalCost">Загальна вартість</button>
 	</div>
 

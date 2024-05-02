@@ -42,41 +42,43 @@
 	<script>
 		"use strict";
 
-
-		function sum() {
-			const firstNumberValue = parseFloat(document.querySelector('#firstNumber').value);
-			const secondNumberValue = parseFloat(document.querySelector('#secondNumber').value);
-			if (isNaN(firstNumberValue) || isNaN(secondNumberValue)) throw new Error('Некоректне значення');
-			document.querySelector('#result').value = firstNumberValue + secondNumberValue;
-		}
-
-		function subtract() {
-			const firstNumberValue = parseFloat(document.querySelector('#firstNumber').value);
-			const secondNumberValue = parseFloat(document.querySelector('#secondNumber').value);
-			if (isNaN(firstNumberValue) || isNaN(secondNumberValue)) throw new Error('Некоректне значення')
-			document.querySelector('#result').value = firstNumberValue - secondNumberValue;
-		}
-
-		function multiply() {
-			const firstNumberValue = parseFloat(document.querySelector('#firstNumber').value);
-			const secondNumberValue = parseFloat(document.querySelector('#secondNumber').value);
-			if (isNaN(firstNumberValue) || isNaN(secondNumberValue)) throw new Error('Некоректне значення')
-			document.querySelector('#result').value = firstNumberValue * secondNumberValue;
-		}
-
-		function divide() {
+		function calculator(operation) {
 			const firstNumberValue = parseFloat(document.querySelector('#firstNumber').value);
 			const secondNumberValue = parseFloat(document.querySelector('#secondNumber').value);
 			if (isNaN(firstNumberValue) || isNaN(secondNumberValue) || secondNumberValue === 0) throw new Error(
 				'Некоректне значення');
-			document.querySelector('#result').value = firstNumberValue / secondNumberValue;
+			let result;
+
+			switch (operation) {
+				case '+':
+					result = firstNumberValue + secondNumberValue;
+					break;
+				case '-':
+					result = firstNumberValue - secondNumberValue;
+					break;
+				case '*':
+					result = firstNumberValue * secondNumberValue;
+					break;
+				default:
+					result = firstNumberValue / secondNumberValue;
+					break;
+			}
+			document.querySelector('#result').value = result;
 		}
 
 		window.onload = function () {
-			document.querySelector('#add').onclick = sum;
-			document.querySelector('#subtract').onclick = subtract;
-			document.querySelector('#multiply').onclick = multiply;
-			document.querySelector('#divide').onclick = divide;
+			document.querySelector('#add').onclick = () => {
+				calculator('+')
+			};
+			document.querySelector('#subtract').onclick = () => {
+				calculator('-')
+			};
+			document.querySelector('#multiply').onclick = () => {
+				calculator('*')
+			};
+			document.querySelector('#divide').onclick = () => {
+				calculator('/')
+			};
 		};
 	</script>
 </body>

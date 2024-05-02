@@ -38,25 +38,22 @@
 
 		function getCreateTable() {
 			const numberOfGradesValue = parseInt(document.querySelector('#numberOfGrades').value);
-			const ROWS_NUMBER = 1;
 			if (isNaN(numberOfGradesValue)) throw new Error('Некоректне значення');
 
 			const columnsNumber = numberOfGradesValue;
 
 			const tableElement = document.createElement('table');
-			for (let rowIndex = 0; rowIndex < ROWS_NUMBER; rowIndex++) {
-				const trElement = document.createElement('tr');
-				for (let columnIndex = 0; columnIndex < columnsNumber; columnIndex++) {
-					const tdElement = document.createElement('td');
-					const inputElement = document.createElement('input');
-					inputElement.setAttribute('type', 'number');
-					inputElement.setAttribute('placeholder', '10');
-					inputElement.setAttribute('id', 'grade');
-					tdElement.append(inputElement);
-					trElement.append(tdElement);
-				}
-				tableElement.append(trElement);
+			const trElement = document.createElement('tr');
+			for (let columnIndex = 0; columnIndex < columnsNumber; columnIndex++) {
+				const tdElement = document.createElement('td');
+				const inputElement = document.createElement('input');
+				inputElement.setAttribute('type', 'number');
+				inputElement.setAttribute('placeholder', '10');
+				inputElement.setAttribute('id', 'grade');
+				tdElement.append(inputElement);
+				trElement.append(tdElement);
 			}
+			tableElement.append(trElement);
 			return tableElement;
 		}
 
